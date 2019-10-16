@@ -1,0 +1,13 @@
+
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+legend{
+   
+  font-size: 15px;
+  
+}
