@@ -35,7 +35,7 @@ public class ProdutoDAO {
         Class.forName("com.mysql.jdbc.Driver");
         // Passo 2: Obter a conexão
         conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/tabacaria",
+                "jdbc:mysql://localhost:3307/tabacaria",
                 "root",
                 "");
 
