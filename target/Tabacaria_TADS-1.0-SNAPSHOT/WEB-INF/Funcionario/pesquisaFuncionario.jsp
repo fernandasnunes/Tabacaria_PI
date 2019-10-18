@@ -35,7 +35,6 @@
             <div class="col-12">                  
                 <div>
                     <br><br>
-                    <div class="centralizarLogin">
                         <form method="post" action="${pageContext.request.contextPath}/ConsultaFuncionario">                                                                                                          
                             <label>ID&nbsp;&nbsp;<input required="required" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
                                 return true; else return false;" style="width: 112%;" type="text" name="id" id="id"/></label>
@@ -45,7 +44,6 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            
                             <button type="button" onclick="window.location.href = 'menu.jsp';">Voltar</button>
                         </form> 
-                    </div>
                 </div>
             </div>
         </nav>
