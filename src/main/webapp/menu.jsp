@@ -70,7 +70,7 @@
                                 <a href="./IncluirProduto"> Produtos</a>
                             </li>
                               <li>
-                                <a href="./ConsultaUsuario"> Usuários</a>
+                                <a href="./IncluirUsuario"> Usuários</a>
                             </li>
                         </ul>
                     </li>

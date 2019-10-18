@@ -12,7 +12,7 @@
     </head>
     <body>
         <footer>
-            <p style="color: white"> Char 4:20 - Todos os Diretos Reservados - 2019 &copysr;</p>
+            <p > - Todos os Diretos Reservados - 2019 &copysr;</p>
         </footer>
     </body>
 </html>

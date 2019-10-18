@@ -36,7 +36,7 @@
                <div class="form-horizontal">
             <fieldset>
 
-                <legend>Pesquisar Usiario</legend>
+                <legend>Pesquisar Usuário</legend>
                         <form method="post" action="${pageContext.request.contextPath}/ConsultarUsuario"> 
                                                 <div class="form-group row">
 

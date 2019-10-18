@@ -72,6 +72,5 @@
                 </div>
             </main>
         </nav>
-        <%@ include file="/rodape.jsp"%> 
     </body>
 </html>
