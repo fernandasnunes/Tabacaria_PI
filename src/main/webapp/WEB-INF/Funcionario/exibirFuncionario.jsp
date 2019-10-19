@@ -35,13 +35,11 @@
 
     </head>
     <body>  
-        <nav>
-            <h2 style="color: white">Resultado..</h2>
-            <main class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <br>
-                        <div>
+  
+          <div class="form-horizontal">
+            <fieldset>
+
+                <legend> Resultado Funcionario </legend>
                             <form method="post" action="${pageContext.request.contextPath}/ExcluirFuncionario">
                                 <div>                                    
                                     <table border= 1>
@@ -86,7 +84,6 @@
                         </div>
                     </div>
                 </div>
-            </main>
-        </nav>
+         
     </body>
 </html>

@@ -27,10 +27,9 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-        <script language="javascript"></script>
     </head>
     <body>
-       <div class="form-horizontal">
+        <div class="form-horizontal">
             <fieldset>
 
 
@@ -60,7 +59,7 @@
 
                         <br>
                     </label>
-                    <button  href="./ConsultaUsuario" class="btn btn-success">Salvar</button>   
+                    <button  href="./ConsultaFuncionario" class="btn btn-success">Salvar</button>   
                     <button type="reset" class="btn btn-primary">Limpar</button>
                     <button type="reset"  class="btn btn-success" onclick="window.location.href = 'menu.jsp';">Voltar</button>
                 </form>
@@ -68,5 +67,5 @@
 
 
     </fieldset>
-    </body>
+</body>
 </html>
