@@ -34,12 +34,12 @@
         crossorigin="anonymous"></script>
     </head>
     <body>  
-        <nav>
-            <h2 style="color: white">Resultado..</h2>
-            <main class="container">
-                <div class="row">
-                    <div class="col-12">                       
-                        <div>
+        
+        <div class="form-horizontal">
+            <fieldset>
+
+                <legend> Resultado </legend>
+
                             <form method="post" action="${pageContext.request.contextPath}/ExcluirProduto">
                                 <div>                                    
                                     <table border= 1>
@@ -67,7 +67,7 @@
                                 </div>
                                 <br>
                                 <div>
-                                    <button type="submit" value="${prod.id}" name="id">Excluir</button>
+                                    <button  class="btn btn-primary" type="submit" value="${prod.id}" name="id">Excluir</button>
 
                             </form>
                             <form method="get" action="${pageContext.request.contextPath}/ConsultaProduto">

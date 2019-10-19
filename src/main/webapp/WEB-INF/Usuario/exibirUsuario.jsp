@@ -35,13 +35,11 @@
 
     </head>
     <body>  
-        <nav>
-            <h2 style="color: white">Resultado..</h2>
-            <main class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <br>
-                        <div>
+      
+                 <div class="form-horizontal">
+            <fieldset>
+
+                <legend> Resultado Usuário </legend>
                             <form method="post" action="${pageContext.request.contextPath}/ExcluirUsuario">
                                 <div>                                    
                                     <table border= 1>
@@ -52,10 +50,10 @@
                                             <td align=middle width=100>Senha</td>                                            
                                         </tr>
                                         <tr>
-                                            <td align=middle><c:out value="${usuario.id}"/></td>
-                                            <td align=middle><c:out value="${usuario.nome}"/></td>
-                                            <td align=middle><c:out value="${usuario.login}" /></td>
-                                            <td align=middle ><c:out  value="${usuario.senha}" /></td>                                            
+                                            <td align=middle><c:out    value="${usuario.id}"/></td>
+                                            <td align=middle><c:out  value="${usuario.nome}"/></td>
+                                            <td align=middle><c:out  value="${usuario.login}" /></td>
+                                            <td align=middle ><c:out value="${usuario.senha}" /></td>                                            
                                         </tr>
                                     </table>
                                 </div>
@@ -70,7 +68,5 @@
                         </div>
                     </div>
                 </div>
-            </main>
-        </nav>
     </body>
 </html>

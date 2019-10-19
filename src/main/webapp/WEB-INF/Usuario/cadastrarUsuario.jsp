@@ -33,41 +33,53 @@
 
     </head>
     <body>
-        <nav>            
-            <h2 style="color: white">Cadastro de Usuário</h2>        
-            <main class="container">
-                <div class="row">
-                    <div class="col-12">                                        
-                        <div>
-                            <form method="post" action="${pageContext.request.contextPath}/IncluirUsuario">
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="func">Nome</label>
-                                    <select style="width: 300px;" name="func">                                          
-                                        <c:forEach items="${funcionario}" var="func">
-                                            <option  type="search" value="${func.nome}" id="${func.id}" name="func"/>${func.id} ${func.nome}
-                                        </c:forEach>
-                                    </select>                                    
-                                </div>
-                                <div class="form-group row">                                    
-                                    <label class="col-sm-2 col-form-label" for="login">Login</label>
-                                    <div class="col-sm-5">
-                                        <input style="width: 250px;" required="required" type="text" name="login" />                                                          
-                                    </div>
-                                    <label class="col-sm-2 col-form-label" for="senha">Senha</label>
-                                    <div>
-                                        <input style="width: 250px;" required="required" type="text" name="senha" />
-                                    </div>
-                                </div>
+   
 
-                                <button type="submit">Salvar</button>
-                                <button type="reset">Limpar</button>
-                                <button type="reset" onclick="window.location.href = 'menu.jsp';">Voltar</button>
-                            </form>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <div class="form-horizontal">
+            <fieldset>
+
+                <legend> Cadastro de Usuário </legend>
+
+                <form method="post" action="${pageContext.request.contextPath}/IncluirUsuario">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="nome">Nome</label>
+                        <div class="col-md-4">
+                            <input id="textinput" name="nome" type="text" placeholder="Nome" class="form-control input-md">
                         </div>
                     </div>
-                </div>
-            </main>
-        </nav>
-     
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="login">Login:</label>
+                        <div class="col-md-4">
+                            <input  required="required" type="text" name="login" />                                                          
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-3">
+
+
+                                <label class="col-md-4 control-label" for="senha">Senha:</label>
+
+                                <div class="col-md-4">
+                                    <input required="required" type="text" name="senha" />
+                                </div>
+                            </div>
+                        </div>
+                        <label class="col-md-4 control-label" for="button1id">
+
+
+                        </label>
+                        <button type="submit" class="btn btn-success">Salvar</button>   
+                        <button type="reset" class="btn btn-primary">Limpar</button>
+                        <button type="reset"  class="btn btn-success" onclick="window.location.href = 'menu.jsp';">Voltar</button>
+                </form>
+
+            </fieldset>
+
+
     </body>
 </html>

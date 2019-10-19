@@ -36,15 +36,14 @@
 
     </head>
     <body>  
-        <nav>
-            <h2 style="color: white">Resultado..</h2>
-            <main class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <br>
-                        <div>
+             <div class="form-horizontal">
+            <fieldset>
+
+                <legend> Dados do Cliente: </legend>
+               
                             <form method="post" action="${pageContext.request.contextPath}/ExcluirCliente">
-                                <div>                                    
+                                       <div class="form-group">
+                                   
                                     <table border= 1>
                                         <tr>
                                             <td align=middle width=100>Id</td>
@@ -60,6 +59,7 @@
                                             <td align=middle width=150>Data de Cadastro</td>
                                         </tr>
                                         <tr>
+                                        
                                             <td align=middle><c:out value="${cliente.id}"/></td>
                                             <td align=middle><c:out value="${cliente.nome}"/></td>
                                             <td align=middle><c:out value="${cliente.endereco}" /></td>
@@ -74,7 +74,10 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <button type="submit" value="${cliente.id}" name="id">Excluir</button>
+                                        </div>
+                                         <label class="col-md-4 control-label" for="button1id">
+
+                                <button  class="btn btn-success" type="submit" value="${cliente.id}" name="id">Excluir</button>
                             </form>
                             <form method="get" action="${pageContext.request.contextPath}/ConsultarCliente">
                                 <button type="button" onclick="window.location.href = 'menu.jsp';">Voltar</button>
@@ -82,10 +85,12 @@
                             <form method="get" action="${pageContext.request.contextPath}/AlterarCliente">
                                 <button type="submit" value="${cliente.id}" name="id">Alterar</button>
                             </form>
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
-            </main>
-        </nav>
+            
     </body>
 </html>
