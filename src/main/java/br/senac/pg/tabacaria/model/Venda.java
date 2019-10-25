@@ -6,6 +6,7 @@
 package br.senac.pg.tabacaria.model;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -14,11 +15,21 @@ import java.sql.Date;
 public class Venda {
     private int id;
     private int quantidade;
-    private Date dt_venda;
+    private String dt_venda;
+    private Funcionario funcionario;
+    private Cliente cliente;
+    private List<Produto> produto;
 
-    public Venda(int quantidade, Date dt_venda) {
+    public Venda() {
+    }
+
+    public Venda(int id, int quantidade, String dt_venda, Funcionario funcionario, Cliente cliente, List<Produto> produto) {
+        this.id = id;
         this.quantidade = quantidade;
         this.dt_venda = dt_venda;
+        this.funcionario = funcionario;
+        this.cliente = cliente;
+        this.produto = produto;
     }
 
     public int getId() {
@@ -37,11 +48,37 @@ public class Venda {
         this.quantidade = quantidade;
     }
 
-    public Date getDt_venda() {
+    public String getDt_venda() {
         return dt_venda;
     }
 
-    public void setDt_venda(Date dt_venda) {
+    public void setDt_venda(String dt_venda) {
         this.dt_venda = dt_venda;
-    }        
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Produto> getProduto() {
+        return produto;
+    }
+
+    public void setProduto(List<Produto> produto) {
+        this.produto = produto;
+    }
+    
+    
 }

@@ -6,6 +6,7 @@
 package br.senac.pg.tabacaria.model;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -26,23 +27,25 @@ public class Produto {
     
     private int quantidade;       
     
-    private String[] categorias;
+    private List<Categoria> categorias;
     
     private Date dataCadastro;
 
     public Produto() {
     }
 
-    public Produto(String nome, String marca, String[] categorias,int quantidade, Double precoCompra, Double precoVenda, String descricao) {
+    public Produto(Long id, String nome, String marca, String descricao, Double precoCompra, Double precoVenda, int quantidade, List<Categoria> categorias, Date dataCadastro) {
+        this.id = id;
         this.nome = nome;
         this.marca = marca;
-        this.categorias = categorias;
-        this.quantidade = quantidade;
+        this.descricao = descricao;
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
-        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.categorias = categorias;
+        this.dataCadastro = dataCadastro;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -57,6 +60,14 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getDescricao() {
@@ -91,21 +102,13 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String[] getCategorias() {
+    public List<Categoria> getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(String[] categorias) {
+    public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
-    } 
+    }
 
     public Date getDataCadastro() {
         return dataCadastro;
