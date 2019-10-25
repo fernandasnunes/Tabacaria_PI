@@ -35,7 +35,7 @@
 
 
             <div class="form-horizontal">
-                <fieldset>
+                
 
                     <legend> Cadastro de Produto </legend>
 
@@ -55,27 +55,13 @@
 
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="cat">Categoria</label>
+                            <label class="col-md-4 control-label" for="descricao">Descrição</label>
                             <div class="col-md-4">
-
-                                <ul>
-                                    <c:forEach items="${categoria}" var="cat">
-                                        <input type="radio" value="${cat.id}" id="${cat.id}" name="cat"/>${cat.nome}
-                                    </c:forEach>
-                                </ul>
+                                <input id="descricao" name="descricao" type="text" placeholder="Marca" class="form-control input-md">
+                                
                             </div>
                         </div>
 
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="qtd">Quantidade</label>
-                            <div class="col-md-4">
-                                <input  class="form-control input-md" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
-                                            return true;
-                                        else
-                                            return false;" style="width: 250px;" required="required" type="text" name="qtd" />
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="prcompra">Preço Compra</label>
@@ -91,9 +77,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="descricao">Descrição</label>
+                            <label class="col-md-4 control-label" for="quantidade">Quantidade</label>
                             <div class="col-md-4">
-                                <textarea required="required"  name="descricao"></textarea>
+                                <input id="quantidade" name="quantidade" type="text" placeholder="Quantidade" class="form-control input-md">
                             </div>
                         </div>
 
@@ -105,17 +91,17 @@
 
 
 
-                        <label class="col-md-4 control-label" for="button1id">
+                      
 
 
-                        </label>
-                        <button type="submit" class="btn btn-success">Salvar</button>   
-                        <button type="reset" class="btn btn-primary">Limpar</button>
-                        <button type="reset"  class="btn btn-success" onclick="window.location.href = 'menu.jsp';">Voltar</button>
+                        
+                         <div class="control-label col-md-4">
+                <button type="submit" class="btn btn-success">Salvar</button>   
+                                <button type="reset" class="btn btn-primary">Limpar</button>
+                         </div>        
                     </form>
 
-                </fieldset>
-
+             
 
 
 

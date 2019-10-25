@@ -1,7 +1,4 @@
-<%-- 
-    Document   : cadastrarCliente
 
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -39,7 +36,7 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
         <div class="form-horizontal">
-            <fieldset>
+           
 
                 <legend>Cadastrar Cliente</legend>
 
@@ -53,13 +50,10 @@
 
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="UF">Sexo</label>
+                        <label class="col-md-4 control-label" for="sexo">Sexo</label>
                         <div class="col-md-4">
 
-                            <select name="sexo" >                                        
-                                <option value="M">Masculino</option>
-                                <option value="F">Feminino</option>                                        
-                            </select> 
+                             <input id="sexo" name="sexo" type="text" placeholder="Sexo" class="form-control input-md">
                         </div>
                     </div>
 
@@ -67,76 +61,51 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="endereco">Endereço</label>
                         <div class="col-md-4">
-                            <input id="endereco" name="endereco" type="text" placeholder="Endereço" class="form-control input-md">
+                            <input id="endereco" name="endereco" type="text" placeholder="Avenida Paulista, 123" class="form-control input-md">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="bairro">Bairro</label>
+                        <label class="col-md-4 control-label" for="datanascimento">Data de Nascimento</label>
                         <div class="col-md-4">
-                            <input id="bairro" name="bairro" type="text" placeholder="Bairro" class="form-control input-md">
+                            <input id="datanascimento" name="datanascimento" type="text" placeholder="01/01/0001" class="form-control input-md">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="cidade">Cidade</label>
+                        <label class="col-md-4 control-label" for="telefone">Telefone</label>
                         <div class="col-md-4">
-                            <input id="cidade" name="cidade" type="text" placeholder="Cidade" class="form-control input-md">
+                            <input id="cidade" name="cidade" type="text" placeholder="11 97485-9632" class="form-control input-md">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="estado">Estado</label>
+                        <label class="col-md-4 control-label" for="cpf">CPF</label>
                         <div class="col-md-4">
-                            <input onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
-                                        return false;
-                                    else
-                                        return true;" maxlength="2"placeholder="SP" required="required" type="text" class="form-control input-md"name="estado" />
+                            <input  maxlength="14" placeholder="192.168.145-01" required="required" type="text" class="form-control input-md "name="cpf" />
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label" for="cep">Cep</label>
+                        <label class="col-sm-4 control-label" for="email">Email</label>
                         <div class="col-sm-4">
-                            <input onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
-                                        return true;
-                                    else
-                                        return false;" maxlength="9" placeholder="000-00000" required="required" type="text" class="form-control input-md" name="cep"/>
+                            <input maxlength="30" placeholder="fulano@mail.com" required="required" type="text" class="form-control input-md" name="email"/>
                         </div>
                     </div>
 
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-sm-4  control-label" for="telefone">Telefone</label>
-                        <div class="col-sm-4">
-                            <input onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
-                                        return true;
-                                    else
-                                        return false;" maxlength="14" placeholder="(00)0000-0000" required="required" type="text" class="form-control input-md"name="telefone"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-4  control-label" for="celular">Celular</label>
-                        <div class="col-sm-4">
-                            <input onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
-                                        return true;
-                                    elsex
-                                        return false;" maxlength="14" placeholder="(00)00000-0000" required="required" type="text" class="form-control input-md" name="celular"/>                                            </div>
-                    </div>
-
-
- <label class="col-md-4 control-label" for="button1id">
+                    
+                   
+                   
                             
                             
-                    </label>
+                    <div class="control-label col-md-4">
                 <button type="submit" class="btn btn-success">Salvar</button>   
                                 <button type="reset" class="btn btn-primary">Limpar</button>
-                                <button type="reset"  class="btn btn-success" onclick="window.location.href = 'menu.jsp';">Voltar</button>
+                         </div>        
                             </form>
 
-            </fieldset>
+            
 
 
 

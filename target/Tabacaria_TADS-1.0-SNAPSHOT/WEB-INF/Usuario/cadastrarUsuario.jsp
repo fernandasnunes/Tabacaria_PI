@@ -1,8 +1,4 @@
-<%-- 
-    Document   : cadastrarUsuario
-    Created on : 06/10/2019, 17:20:05
-    Author     : fernanda
---%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -53,29 +49,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="login">Login:</label>
+                        <label class="col-md-4 control-label" for="login">Login</label>
                         <div class="col-md-4">
-                            <input  required="required" type="text" name="login" />                                                          
+                            <input id="login" name="login" type="text" placeholder="Login" class="form-control input-md">                                                      
                         </div>
-                        <br>
+                    </div>
                         <div class="form-group">
-                            <div class="col-md-3">
+                            
 
 
-                                <label class="col-md-4 control-label" for="senha">Senha:</label>
+                                <label class="col-md-4 control-label" for="senha">Senha</label>
 
                                 <div class="col-md-4">
-                                    <input required="required" type="text" name="senha" />
+                                    <input id="senha" name="senha" type="password"  class="form-control input-md">    
                                 </div>
                             </div>
                         </div>
-                        <label class="col-md-4 control-label" for="button1id">
-
-
-                        </label>
-                        <button type="submit" class="btn btn-success">Salvar</button>   
-                        <button type="reset" class="btn btn-primary">Limpar</button>
-                        <button type="reset"  class="btn btn-success" onclick="window.location.href = 'menu.jsp';">Voltar</button>
+                        
+                        <div class="control-label col-md-4">
+                <button type="submit" class="btn btn-success">Salvar</button>   
+                                <button type="reset" class="btn btn-primary">Limpar</button>
+                         </div>   
                 </form>
 
             </fieldset>
