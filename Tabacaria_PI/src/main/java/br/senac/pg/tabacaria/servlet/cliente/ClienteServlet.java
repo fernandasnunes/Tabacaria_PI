@@ -1,0 +1,133 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.senac.pg.tabacaria.servlet.cliente;
+
+import br.senac.pg.tabacaria.dao.ClienteDAO;
+import br.senac.pg.tabacaria.model.Cliente;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author rafael
+ */
+@WebServlet("/")
+public class ClienteServlet extends HttpServlet {
+   
+
+    private ClienteDAO clienteDAO;
+
+    public void init() {
+        clienteDAO = new ClienteDAO();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getServletPath();
+
+        try {
+            switch (action) {
+                case "/NovoCliente":
+                    novoFormulario(request, response);
+                    break;
+                case "/InserirCliente":
+                    inserirCliente(request, response);
+                    break;
+                case "/DeletarCliente":
+                    deletarCliente(request, response);
+                    break;
+                case "/EditarCliente":
+                    formularioEdicao(request, response);
+                    break;
+                case "/EdicaoCliente":
+                    editarCliente(request, response);
+                    break;
+                
+                default:
+                    listarCliente(request, response);
+                    break;
+            }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
+    }
+
+    private void listarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        List<Cliente> listaClientes = clienteDAO.selecionarTodosCliente();
+        request.setAttribute("listaClientes", listaClientes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Cliente/pesquisarCliente.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    
+    private void novoFormulario(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Cliente/cadastrarCliente.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void formularioEdicao(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        long id = Integer.parseInt(request.getParameter("id"));
+        Cliente existingUser = clienteDAO.selecionarCliente(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Cliente/cadastrarCliente.jsp");
+        request.setAttribute("cliente", existingUser);
+        dispatcher.forward(request, response);
+
+    }
+
+    private void inserirCliente(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+
+        String nome = request.getParameter("nome");
+        String sexo = request.getParameter("sexo");
+        String datanascimento = request.getParameter("datanascimento");
+        String cpf = request.getParameter("cpf");
+        String endereco = request.getParameter("endereco");
+        String telefone = request.getParameter("telefone");
+        String email = request.getParameter("email");
+        Cliente novoCliente = new Cliente(nome, sexo, datanascimento, cpf, endereco, telefone, email);
+        clienteDAO.inserirCliente(novoCliente);
+        response.sendRedirect("list");
+    }
+
+    private void editarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        long id = Integer.parseInt(request.getParameter("id"));
+        String nome = request.getParameter("nome");
+        String sexo = request.getParameter("sexo");
+        String datanascimento = request.getParameter("datanascimento");
+        String cpf = request.getParameter("cpf");
+        String endereco = request.getParameter("endereco");
+        String telefone = request.getParameter("telefone");
+        String email = request.getParameter("email");
+
+        Cliente cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email);
+        clienteDAO.editarCliente(cliente);
+        response.sendRedirect("list");
+    }
+
+    private void deletarCliente(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        clienteDAO.deletarCliente(id);
+        response.sendRedirect("list");
+
+    }
+}
