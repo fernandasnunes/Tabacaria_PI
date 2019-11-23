@@ -35,16 +35,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item ">
-        <a class="nav-link" href="menu.jsp">Home<span class="sr-only"></span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Home">Home<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Cliente</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Funcionário</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Funcionario">Funcionário</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Produto<span class="sr-only"></span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Privilegiado</a>
@@ -56,7 +56,7 @@
                  <center>
   <h1>Gerenciamento de Clientes</h1>
         <h2>
-         <a href="Cliente/Novo">Novo Cliente</a>
+         <a href="${pageContext.request.contextPath}/Cliente/Novo">Novo Cliente</a>
         
          
          
@@ -79,9 +79,9 @@
                     <td><c:out value="${cliente.cpf}" /></td>
                     <td><c:out value="${cliente.telefone}" /></td>
                     <td>
-                     <a href="Editar?id=<c:out value='${cliente.id}' />">Editar</a>
+                        <a href="${pageContext.request.contextPath}/Cliente/Editar?id=<c:out value='${cliente.id}' />">Editar</a>
                      
-                     <a href="Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
+                     <a href="${pageContext.request.contextPath}/Cliente/Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
                     </td>
                 </tr>
             </c:forEach>

@@ -6,7 +6,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="formatacao.css"/>
         <title>Pesquisar Funcionario</title>
-        <meta charset="UTF-8">        
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -24,29 +24,54 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-
+     
     </head>
-    <body>  
-  
-           <center>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="Home">Home<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Cliente">Cliente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Funcionario">Funcionário</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="Produto">Produto<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Privilegiado</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+        
+                 <center>
   <h1>Gerenciamento de Funcionarios</h1>
         <h2>
-         <a href="Novo">Novo Funcionario</a>
+         <a href="Funcionario/Novo">Novo Funcionario</a>
         
-         <a href="list">Listar Funcionarios</a>
+         
          
         </h2>
  </center>
     <div align="center">
         <table border="1" cellpadding="5">
            
-            <tr>
+        <tr>
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Cargo</th>
                 <th>Ações</th>
             </tr>
-            <c:forEach var="funcionario" items="${listaFuncionario}">
+            <c:forEach var="funcionario" items="${listaFuncionarios}">
                 <tr>
                     <td><c:out value="${funcionario.id}" /></td>
                     <td><c:out value="${funcionario.nome}" /></td>
@@ -63,3 +88,5 @@
   
     </body>
 </html>
+
+

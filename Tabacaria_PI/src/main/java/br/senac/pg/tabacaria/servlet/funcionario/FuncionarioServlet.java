@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.senac.pg.tabacaria.servlet.funcionario;
-
-
 import br.senac.pg.tabacaria.dao.FuncionarioDAO;
-
 import br.senac.pg.tabacaria.model.Funcionario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,13 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author rafael
- */
-@WebServlet("/Funcionario")
-public class ControllerFuncionario extends HttpServlet {
- private FuncionarioDAO funcionarioDAO;
+@WebServlet("/Funcionario/*")
+public class FuncionarioServlet extends HttpServlet {
+   
+
+    private FuncionarioDAO funcionarioDAO;
 
     public void init() {
         funcionarioDAO = new FuncionarioDAO();
@@ -38,29 +29,31 @@ public class ControllerFuncionario extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getServletPath();
-
+        String action = request.getPathInfo();
+        
+        if(action == null)
+            action = "/Listar";
         try {
             switch (action) {
-                case "/NovoFuncionario":
+                case "/Novo":
                     novoFormulario(request, response);
                     break;
-                case "/InserirFuncionario":
+                case "/Inserir":
                     inserirFuncionario(request, response);
                     break;
-                case "/DeletarFuncionario":
-                    deletarCliente(request, response);
+                case "/Deletar":
+                    deletarFuncionario(request, response);
                     break;
-                case "/EditarFuncionario":
+                case "/Editar":
                     formularioEdicao(request, response);
                     break;
-                case "/EdicaoFuncionario":
-                    editarCliente(request, response);
+                case "/Edicao":
+                    editarFuncionario(request, response);
                     break;
-                
-                default:
+                case "/Listar":
                     listarFuncionario(request, response);
                     break;
+                
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -69,33 +62,32 @@ public class ControllerFuncionario extends HttpServlet {
 
     private void listarFuncionario(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Funcionario> listaFuncionario = funcionarioDAO.selecionarTodosFuncionarios();
-        request.setAttribute("listaFuncionario", listaFuncionario);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Funcionario/exibirFuncionario.jsp");
+        List<Funcionario> listaFuncionarios = funcionarioDAO.selecionarTodosFuncionarios();
+        request.setAttribute("listaFuncionarios", listaFuncionarios);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Funcionario/pesquisarFuncionario.jsp");
         dispatcher.forward(request, response);
     }
     
     
     private void novoFormulario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Funcionario/cadastrarFuncionario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Funcionario/cadastrarFuncionario.jsp");
         dispatcher.forward(request, response);
     }
 
     private void formularioEdicao(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         long id = Integer.parseInt(request.getParameter("id"));
-        Funcionario funcionarioCadastrado = funcionarioDAO.selecionarFuncionario(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Funcionario/cadastrarFuncionario.jsp");
-        request.setAttribute("funcionario", funcionarioCadastrado);
+        Funcionario existingUser = funcionarioDAO.selecionarFuncionario(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Funcionario/cadastrarFuncionario.jsp");
+        request.setAttribute("funcionario", existingUser);
         dispatcher.forward(request, response);
 
     }
 
     private void inserirFuncionario(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-
-        String nome = request.getParameter("nome");
+ String nome = request.getParameter("nome");
         String cargo = request.getParameter("cargo");
         String endereco = request.getParameter("endereco");
         String sexo = request.getParameter("sexo");
@@ -103,12 +95,13 @@ public class ControllerFuncionario extends HttpServlet {
         
         Funcionario novoFuncionario = new Funcionario(nome, cargo, endereco, sexo, telefone);     
         funcionarioDAO.inserirFuncionario(novoFuncionario);
-        response.sendRedirect("listFuncionario");
+        response.sendRedirect("Listar");
+    
     }
 
-    private void editarCliente(HttpServletRequest request, HttpServletResponse response)
+    private void editarFuncionario(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        long id = Integer.parseInt(request.getParameter("id"));
+           long id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         String cargo = request.getParameter("cargo");
         String endereco = request.getParameter("endereco");
@@ -117,14 +110,14 @@ public class ControllerFuncionario extends HttpServlet {
 
         Funcionario funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone);
         funcionarioDAO.inserirFuncionario(funcionario);
-        response.sendRedirect("listFuncionario");
+        response.sendRedirect("Listar");
     }
 
-    private void deletarCliente(HttpServletRequest request, HttpServletResponse response)
+ private void deletarFuncionario(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         funcionarioDAO.deletarFuncionario(id);
-        response.sendRedirect("listFuncionario");
+        response.sendRedirect("Listar");
 
     }
 }

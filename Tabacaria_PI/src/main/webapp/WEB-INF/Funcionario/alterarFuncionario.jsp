@@ -1,8 +1,4 @@
-<%-- 
-    Document   : alterarFuncionario
-    Created on : 06/10/2019, 23:05:10
-    Author     : fernanda
---%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -36,7 +32,7 @@
                 <div class="row">
                     <div class="col-12">                       
                         <div>
-                            <form method="post" action="${pageContext.request.contextPath}/AlterarFuncionario">
+                            <form method="post" action="${pageContext.request.contextPath}/Alterar">
                                 <input type="hidden" value="${id}" name="codFunc" id="codFunc"/>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="nome">Nome</label>

@@ -61,16 +61,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item ">
-        <a class="nav-link" href="menu.jsp">Home<span class="sr-only"></span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Home">Home<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Cliente">Cliente</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Funcionario">Funcionário</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Funcionario">Funcionário</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="Produto">Produto<span class="sr-only"></span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Privilegiado</a>

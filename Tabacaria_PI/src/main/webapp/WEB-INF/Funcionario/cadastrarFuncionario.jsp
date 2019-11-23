@@ -38,9 +38,9 @@
         <center>
   <h1>Gerenciamento de Funcionarios</h1>
         <h2>
-         <a href="new">Novo Funcionario</a>
+         <a href="Novo">Novo Funcionario</a>
          
-         <a href="list">Listar Funcionarios</a>
+         <a href="Listar">Listar Funcionarios</a>
          
         </h2>
  </center>
