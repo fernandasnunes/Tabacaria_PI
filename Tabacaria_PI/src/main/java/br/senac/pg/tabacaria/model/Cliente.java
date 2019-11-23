@@ -5,14 +5,14 @@ package br.senac.pg.tabacaria.model;
 
 public class Cliente {
     
-    protected Long id;
-    protected String nome;
-   protected String sexo;
-   protected String dataNascimento;
-    protected String cpf;
-    protected String endereco;
-    protected String telefone;  
-    protected String email;
+    private Long id;
+    private String nome;
+    private String sexo;
+    private String dataNascimento;
+    private String cpf;
+    private String endereco;
+    private String telefone;  
+    private String email;
 
     public Cliente() {
     }
