@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div>
-                            <form method="post" action="${pageContext.request.contextPath}/AlterarCliente">
+                            <form method="post" action="${pageContext.request.contextPath}/Alterar">
                                 <input type="hidden" value="${id}" name="codCliente" id="codCliente"/>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="nome">Nome</label>

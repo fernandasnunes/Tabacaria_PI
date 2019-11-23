@@ -64,13 +64,13 @@
         <a class="nav-link" href="menu.jsp">Home<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Cliente</a>
+        <a class="nav-link" href="Cliente">Cliente</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Funcionário</a>
+        <a class="nav-link" href="Funcionario">Funcionário</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Produto<span class="sr-only"></span></a>
+        <a class="nav-link" href="Produto">Produto<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Privilegiado</a>

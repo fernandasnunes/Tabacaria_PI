@@ -56,7 +56,7 @@
                  <center>
   <h1>Gerenciamento de Clientes</h1>
         <h2>
-         <a href="NovoCliente">Novo Cliente</a>
+         <a href="Cliente/Novo">Novo Cliente</a>
         
          
          
@@ -79,9 +79,9 @@
                     <td><c:out value="${cliente.cpf}" /></td>
                     <td><c:out value="${cliente.telefone}" /></td>
                     <td>
-                     <a href="EditarCliente?id=<c:out value='${cliente.id}' />">Editar</a>
+                     <a href="Editar?id=<c:out value='${cliente.id}' />">Editar</a>
                      
-                     <a href="DeletarCliente?id=<c:out value='${cliente.id}' />">Deletar</a>                     
+                     <a href="Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
                     </td>
                 </tr>
             </c:forEach>

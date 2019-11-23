@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rafael
  */
-@WebServlet("/")
+@WebServlet("/Cliente/*")
 public class ClienteServlet extends HttpServlet {
    
 
@@ -38,29 +38,31 @@ public class ClienteServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getServletPath();
-
+        String action = request.getPathInfo();
+        
+        if(action == null)
+            action = "/Listar";
         try {
             switch (action) {
-                case "/NovoCliente":
+                case "/Novo":
                     novoFormulario(request, response);
                     break;
-                case "/InserirCliente":
+                case "/Inserir":
                     inserirCliente(request, response);
                     break;
-                case "/DeletarCliente":
+                case "/Deletar":
                     deletarCliente(request, response);
                     break;
-                case "/EditarCliente":
+                case "/Editar":
                     formularioEdicao(request, response);
                     break;
-                case "/EdicaoCliente":
+                case "/Edicao":
                     editarCliente(request, response);
                     break;
-                
-                default:
+                case "/Listar":
                     listarCliente(request, response);
                     break;
+                
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -71,14 +73,14 @@ public class ClienteServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Cliente> listaClientes = clienteDAO.selecionarTodosCliente();
         request.setAttribute("listaClientes", listaClientes);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Cliente/pesquisarCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Cliente/pesquisarCliente.jsp");
         dispatcher.forward(request, response);
     }
     
     
     private void novoFormulario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Cliente/cadastrarCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Cliente/cadastrarCliente.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -86,7 +88,7 @@ public class ClienteServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
         long id = Integer.parseInt(request.getParameter("id"));
         Cliente existingUser = clienteDAO.selecionarCliente(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Cliente/cadastrarCliente.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Cliente/cadastrarCliente.jsp");
         request.setAttribute("cliente", existingUser);
         dispatcher.forward(request, response);
 
@@ -104,7 +106,7 @@ public class ClienteServlet extends HttpServlet {
         String email = request.getParameter("email");
         Cliente novoCliente = new Cliente(nome, sexo, datanascimento, cpf, endereco, telefone, email);
         clienteDAO.inserirCliente(novoCliente);
-        response.sendRedirect("list");
+        response.sendRedirect("Listar");
     }
 
     private void editarCliente(HttpServletRequest request, HttpServletResponse response)
@@ -120,14 +122,14 @@ public class ClienteServlet extends HttpServlet {
 
         Cliente cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email);
         clienteDAO.editarCliente(cliente);
-        response.sendRedirect("list");
+        response.sendRedirect("Listar");
     }
 
     private void deletarCliente(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         clienteDAO.deletarCliente(id);
-        response.sendRedirect("list");
+        response.sendRedirect("Listar");
 
     }
 }
