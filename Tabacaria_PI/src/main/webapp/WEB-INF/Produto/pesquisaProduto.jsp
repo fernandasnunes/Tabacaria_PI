@@ -1,8 +1,4 @@
-<%-- 
-    Document   : pesquisaProduto
-    Created on : 10/10/2019, 11:55:56
-    Author     : fernanda
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,45 +27,62 @@
         <script language="javascript"></script>
     </head>
     <body>
-      
-
-<div class="form-horizontal">
-            <fieldset>
 
 
-                <legend>Consulta Produto</legend>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="${pageContext.request.contextPath}">Home<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Funcionario">Funcionário</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Privilegiado</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-                <form method="post" action="${pageContext.request.contextPath}/ConsultaProduto"> 
-
-
-
-
-                    <div class="form-group">
-
-
-                        <label class="col-md-4 control-label" for="id">ID</label>
-
-
-
-
-                        <input required="required" onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode)))
-                                    return true;
-                                else
-                                    return false;"  type="text" name="id" id="id"/></label>
-                    </div>
-
-
-                    <label class="col-md-4 control-label" for="button1id">
-
-                        <br>
-                    </label>
-                    <button  href="/ConsultaProduto" class="btn btn-success">Salvar</button>   
-                    <button type="reset" class="btn btn-primary">Limpar</button>
-                    <button type="reset"  class="btn btn-success" onclick="window.location.href = 'menu.jsp';">Voltar</button>
-                </form>
-        </div>
-
-
-    </fieldset>
-                </body>
-                </html>
+    <center>
+        <h1>Gerenciamento de Produtos</h1>
+        <h2>
+            <a href="${pageContext.request.contextPath}/Produto/Novo">Novo Produto</a>
+        </h2>
+    </center>
+    <div align="center">
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preço Compra</th>
+                <th>Preço Venda</th>
+                <th>Ações</th>
+            </tr>
+            <c:forEach var="produto" items="${listaProdutos}">
+                <tr>
+                    <td><c:out value="${produto.id}" /></td>
+                <td><c:out value="${produto.nome}" /></td>
+                <td><c:out value="${produto.precoCompra}" /></td>
+                <td><c:out value="${produto.precoVenda}" /></td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/Produto/Editar?id=<c:out value='${produto.id}' />">Editar</a>
+                    <a href="${pageContext.request.contextPath}/Produto/Deletar?id=<c:out value='${produto.id}' />">Deletar</a>                     
+                </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div> 
+</body>
+</html>

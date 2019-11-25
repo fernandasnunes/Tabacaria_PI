@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.senac.pg.tabacaria.model.Produto;
 import br.senac.pg.tabacaria.dao.ProdutoDAO;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ import java.util.List;
  *
  * @author rafael
  */
-@WebServlet("/Produto")
+@WebServlet("/Produto/*")
 public class ProdutoServlet extends HttpServlet {
     
      private ProdutoDAO produtoDAO;
@@ -39,27 +40,31 @@ public class ProdutoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getServletPath();
+        String action = request.getPathInfo();
+          
+        if (action == null) {
+            action = "/Listar";
+        }
 
         try {
             switch (action) {
-                case "/NovoProduto":
+               
+                case "/Novo":
                     novoFormulario(request, response);
                     break;
-                case "/InserirProduto":
+                case "/Inserir":
                     inserirProduto(request, response);
                     break;
-                case "/DeletarProduto":
+                case "/Deletar":
                     deletarProduto(request, response);
                     break;
-                case "/EditarProduto":
+                case "/Editar":
                     formularioEdicao(request, response);
                     break;
-                case "/EdicaoProduto":
+                case "/Edicao":
                     editarProduto(request, response);
                     break;
-                
-                default:
+                case "/Listar":
                     listarProduto(request, response);
                     break;
             }
@@ -72,22 +77,23 @@ public class ProdutoServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         List<Produto> listaProdutos = produtoDAO.selecionarTodosProduto();
         request.setAttribute("listaProdutos", listaProdutos);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Produto/exibirProduto.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Produto/pesquisaProduto.jsp");
         dispatcher.forward(request, response);
     }
     
     
     private void novoFormulario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Produto/cadastrarProduto.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Produto/cadastrarProduto.jsp");
         dispatcher.forward(request, response);
+        
     }
 
     private void formularioEdicao(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         long id = Integer.parseInt(request.getParameter("id"));
         Produto produtoCadastrado = produtoDAO.selecionarProduto(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/Produto/cadastrarProduto.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Produto/cadastrarProduto.jsp");
         request.setAttribute("produto", produtoCadastrado);
         dispatcher.forward(request, response);
 
@@ -103,11 +109,13 @@ public class ProdutoServlet extends HttpServlet {
         double precoCompra = Double.parseDouble(request.getParameter("preco_compra"));
         double precoVenda = Double.parseDouble(request.getParameter("preco_venda"));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String dataCadastro = LocalDate.now().toString();
         
-        Produto novoProduto = new Produto(nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade);
+        
+        Produto novoProduto = new Produto(nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade, dataCadastro);
         
         produtoDAO.inserirProduto(novoProduto);
-        response.sendRedirect("listProduto");
+        response.sendRedirect("Listar");
     }
 
     private void editarProduto(HttpServletRequest request, HttpServletResponse response)
@@ -120,17 +128,18 @@ public class ProdutoServlet extends HttpServlet {
         double precoCompra = Double.parseDouble(request.getParameter("preco_compra"));
         double precoVenda = Double.parseDouble(request.getParameter("preco_venda"));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String dataCadastro = LocalDate.now().toString();
 
-        Produto produto = new Produto(id, nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade);
+        Produto produto = new Produto(id, nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade, dataCadastro);
         produtoDAO.editarProduto(produto);
-        response.sendRedirect("listProduto");
+        response.sendRedirect("Listar");
     }
 
     private void deletarProduto(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         produtoDAO.deletarProduto(id);
-        response.sendRedirect("listProduto");
+        response.sendRedirect("Listar");
 
     }
 }

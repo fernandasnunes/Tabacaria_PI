@@ -29,102 +29,126 @@
     </head>
     <body>
 
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="${pageContext.request.contextPath}">Home<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Funcionario">Funcionário</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Privilegiado</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-    <center>
-        <h1>Gerenciamneto de Produtos</h1>
-        <h2>
-            <a href="new">Novo Produto</a>
-            
-            <a href="list">Listar Produtos</a>
-
-        </h2>
-    </center>
-    <div align="center">
-        <c:if test="${produto != null}">
-            <form action="Edicao" method="post">
-            </c:if>
-            <c:if test="${produto == null}">
-                <form action="Inserir" method="post">
+        <div align="center">
+            <c:if test="${produto != null}">
+                <form action="Edicao" method="post">
                 </c:if>
-                <table border="1" cellpadding="5">
-                    <caption>
-                        <h2>
-                            <c:if test="${produto != null}">
-                                Editar Produto
-                            </c:if>
-                            <c:if test="${produto == null}">
-                                Novo Produto
-                            </c:if>
-                        </h2>
-                    </caption>
-                    <c:if test="${produto != null}">
-                        <input type="hidden" name="id" value="<c:out value='${produto.id}' />" />
-                    </c:if>            
-                    <tr>
-                        <th>Nome</th>
-                        <td>
-                            <input type="text" name="nome" size="45" id="nome"
-                                   value="<c:out value='${produto.nome}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Marca</th>
-                        <td>
-                            <input type="text" name="marca" size="45"
-                                   value="<c:out value='${produto.marca}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Descrição</th>
-                        <td>
-                            <input type="text" name="descricao" size="45"
-                                   value="<c:out value='${produto.descricao}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Categoria</th>
-                        <td>
-                            <input type="text" name="categoria" size="45"
-                                   value="<c:out value='${produto.nome}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Preço Compra</th>
-                        <td>
-                            <input type="number" name="preco_compra" size="15"
-                                   value="<c:out value='${produto.precoCompra}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Preço Venda</th>
-                        <td>
-                            <input type="number" name="preco_venda" size="15"
-                                   value="<c:out value='${produto.precoVenda}' />"
-                                   />
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Quantidade</th>
-                        <td>
-                            <input type="number" name="preco_compra" size="15"
-                                   value="<c:out value='${produto.quantidade}' />"
-                                   />
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td colspan="2" align="center">
-                            <input type="submit" value="Salvar" />
-                        </td>
-                    </tr>
-                </table>
-            </form>
-    </div>
+                <c:if test="${produto == null}">
+                    <form action="Inserir" method="post">
+                    </c:if>
+                    <table border="1" cellpadding="5">
+                        <caption>
+                            <h2>
+                                <c:if test="${produto != null}">
+                                    Editar Produto
+                                </c:if>
+                                <c:if test="${produto == null}">
+                                    Novo Produto
+                                </c:if>
+                            </h2>
+                        </caption>
+                        <c:if test="${produto != null}">
+                            <input type="hidden" name="id" value="<c:out value='${produto.id}' />" />
+                        </c:if>            
+                        <tr>
+                            <th>Nome</th>
+                            <td>
+                                <input type="text" name="nome" size="45" id="nome"
+                                       value="<c:out value='${produto.nome}' />"
+                                       />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Marca</th>
+                            <td>
+                                <input type="text" name="marca" size="45"
+                                       value="<c:out value='${produto.marca}' />"
+                                       />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Descrição</th>
+                            <td>
+                                <input type="text" name="descricao" size="45"
+                                       value="<c:out value='${produto.descricao}' />"
+                                       />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Categoria</th>
+                            <td>
+                                <input type="text" name="categoria" size="45"
+                                       value="<c:out value='${produto.nome}' />"
+                                       />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Preço Compra</th>
+                            <td>
+                                <input type="number" name="preco_compra" size="15"
+                                       value="<c:out value='${produto.precoCompra}' />"
+                                       />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Preço Venda</th>
+                            <td>
+                                <input type="number" name="preco_venda" size="15"
+                                       value="<c:out value='${produto.precoVenda}' />"
+                                       />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Quantidade</th>
+                            <td>
+                                <input type="number" name="preco_compra" size="15"
+                                       value="<c:out value='${produto.quantidade}' />"
+                                       />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Data de cadastro</th>
+                            <td>
+                                <c:out value='${produto.dataCadastro}'></c:out>
 
-</body>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <input type="submit" value="Salvar" />
+                                    <input type="button" value="Cancel" onclick="javascript:window.location = '${pageContext.request.contextPath}/Produto';" />
+
+                        </tr>
+                    </table>
+                </form>
+        </div>
+
+    </body>
 </html>

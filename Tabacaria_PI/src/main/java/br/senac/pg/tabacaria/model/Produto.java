@@ -15,14 +15,14 @@ public class Produto {
     private Double precoCompra;
     private Double precoVenda;
     private int quantidade;       
-    
+    private String datacadastro; 
     
    
 
     public Produto() {
     }
 
-    public Produto(Long id, String nome, String marca, String descricao, String categoria, Double precoCompra, Double precoVenda, int quantidade) {
+    public Produto(Long id, String nome, String marca, String descricao, String categoria, Double precoCompra, Double precoVenda, int quantidade, String datacadastro) {
         this.id = id;
         this.nome = nome;
         this.marca = marca;
@@ -31,9 +31,12 @@ public class Produto {
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
         this.quantidade = quantidade;
+        this.datacadastro = datacadastro;
     }
 
-    public Produto(String nome, String marca, String descricao, String categoria, Double precoCompra, Double precoVenda, int quantidade) {
+    
+
+    public Produto(String nome, String marca, String descricao, String categoria, Double precoCompra, Double precoVenda, int quantidade, String datacadastro) {
         this.nome = nome;
         this.marca = marca;
         this.descricao = descricao;
@@ -41,8 +44,19 @@ public class Produto {
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
         this.quantidade = quantidade;
+        this.datacadastro = datacadastro;
     }
 
+    
+    
+    public String getDatacadastro() {
+        return datacadastro;
+    }
+
+    public void setDatacadastro(String datacadastro) {
+        this.datacadastro = datacadastro;
+    }
+   
     public Long getId() {
         return id;
     }
