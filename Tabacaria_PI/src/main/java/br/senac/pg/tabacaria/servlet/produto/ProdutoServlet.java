@@ -105,14 +105,13 @@ public class ProdutoServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String marca = request.getParameter("marca");
         String descricao = request.getParameter("descricao");
-        String categoria = request.getParameter("categoria");
         double precoCompra = Double.parseDouble(request.getParameter("preco_compra"));
         double precoVenda = Double.parseDouble(request.getParameter("preco_venda"));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String dataCadastro = LocalDate.now().toString();
         
         
-        Produto novoProduto = new Produto(nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade, dataCadastro);
+        Produto novoProduto = new Produto(nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro);
         
         produtoDAO.inserirProduto(novoProduto);
         response.sendRedirect("Listar");
@@ -124,13 +123,12 @@ public class ProdutoServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String marca = request.getParameter("marca");
         String descricao = request.getParameter("descricao");
-        String categoria = request.getParameter("categoria");
         double precoCompra = Double.parseDouble(request.getParameter("preco_compra"));
         double precoVenda = Double.parseDouble(request.getParameter("preco_venda"));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String dataCadastro = LocalDate.now().toString();
 
-        Produto produto = new Produto(id, nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade, dataCadastro);
+        Produto produto = new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro);
         produtoDAO.editarProduto(produto);
         response.sendRedirect("Listar");
     }

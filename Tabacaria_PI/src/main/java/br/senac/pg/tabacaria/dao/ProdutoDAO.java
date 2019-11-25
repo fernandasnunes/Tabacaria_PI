@@ -25,13 +25,13 @@ public class ProdutoDAO {
     private String jdbcPassword = "";
     
     
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.PRODUTO" + "(NOME, MARCA, DESCRICAO, CATEGORIA, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO) VALUES " +
-        " (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.PRODUTO" + "(NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO) VALUES " +
+        " (?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, MARCA, DESCRICAO, CATEGORIA, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO FROM TABACARIA.PRODUTO WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO FROM TABACARIA.PRODUTO WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.PRODUTO;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.PRODUTO WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.PRODUTO SET NOME = ?,MARCA= ?, DESCRICAO = ?, CATEGORIA=?, PRECO_COMPRA= ?,PRECO_VENDA = ?, QUANTIDADE = ?, DT_CADASTRO = ? WHERE ID = ?;";
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.PRODUTO SET NOME = ?,MARCA= ?, DESCRICAO = ?, PRECO_COMPRA= ?,PRECO_VENDA = ?, QUANTIDADE = ?, DT_CADASTRO = ? WHERE ID = ?;";
         
      
             
@@ -62,11 +62,10 @@ public class ProdutoDAO {
             preparedStatement.setString(1, produto.getNome());
             preparedStatement.setString(2, produto.getMarca());
             preparedStatement.setString(3, produto.getDescricao());
-            preparedStatement.setString(4, produto.getCategoria());
-            preparedStatement.setDouble(5, produto.getPrecoCompra());
-            preparedStatement.setDouble(6, produto.getPrecoVenda());
-            preparedStatement.setInt(7, produto.getQuantidade());
-            preparedStatement.setString(8, produto.getDatacadastro());
+            preparedStatement.setDouble(4, produto.getPrecoCompra());
+            preparedStatement.setDouble(5, produto.getPrecoVenda());
+            preparedStatement.setInt(6, produto.getQuantidade());
+            preparedStatement.setString(7, produto.getDataCadastro());
             
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
@@ -92,13 +91,12 @@ public class ProdutoDAO {
                 String nome = rs.getString("NOME");
                 String marca = rs.getString("MARCA");
                 String descricao = rs.getString("DESCRICAO");
-                String categoria = rs.getString("CATEGORIA");
                 double precoCompra = rs.getDouble("PRECO_COMPRA");
                 double precoVenda = rs.getDouble("PRECO_VENDA");
                 int quantidade = rs.getInt("QUANTIDADE");
                 String dataCadastro = rs.getString("DT_CADASTRO");
                 
-                produto = new Produto(nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade, dataCadastro);
+                produto = new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro);
                 
             }
         } catch (SQLException e) {
@@ -108,30 +106,21 @@ public class ProdutoDAO {
     }
 
     public List <Produto> selecionarTodosProduto() {
-
-        // using try-with-resources to avoid closing resources (boiler plate code)
         List <Produto> lista = new ArrayList <>();
-        // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
-
-            // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
-
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 Long id = rs.getLong("ID");
                 String nome = rs.getString("NOME");
                 String marca = rs.getString("MARCA");
                 String descricao = rs.getString("DESCRICAO");
-                String categoria = rs.getString("CATEGORIA");
                 double precoCompra = rs.getDouble("PRECO_COMPRA");
                 double precoVenda = rs.getDouble("PRECO_VENDA");
                 int quantidade = rs.getInt("QUANTIDADE");
                 String dataCadastro = rs.getString("DT_CADASTRO");
-                lista.add(new Produto(id, nome, marca, descricao, categoria, precoCompra, precoVenda, quantidade, dataCadastro));
+                lista.add(new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro));
                
             }
         } catch (SQLException e) {
@@ -155,12 +144,11 @@ public class ProdutoDAO {
             statement.setString(1, produto.getNome());
             statement.setString(2, produto.getMarca());
             statement.setString(3, produto.getDescricao());
-            statement.setString(4, produto.getCategoria());
-            statement.setDouble(5, produto.getPrecoCompra());
-            statement.setDouble(6, produto.getPrecoVenda());
-            statement.setInt(7, produto.getQuantidade());
-            statement.setString(8, produto.getDatacadastro());            
-            statement.setLong(9, produto.getId());
+            statement.setDouble(4, produto.getPrecoCompra());
+            statement.setDouble(5, produto.getPrecoVenda());
+            statement.setInt(6, produto.getQuantidade());
+            statement.setString(7, produto.getDataCadastro());            
+            statement.setLong(8, produto.getId());
             
 
             rowUpdated = statement.executeUpdate() > 0;

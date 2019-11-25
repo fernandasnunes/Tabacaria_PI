@@ -101,17 +101,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Categoria</th>
-                            <td>
-                                <input type="text" name="categoria" size="45"
-                                       value="<c:out value='${produto.nome}' />"
-                                       />
-                            </td>
-                        </tr>
-                        <tr>
+                            <tr>
                             <th>Preço Compra</th>
                             <td>
-                                <input type="number" name="preco_compra" size="15"
+                                <input type="number" name="preco_compra" step="any" size="15"
                                        value="<c:out value='${produto.precoCompra}' />"
                                        />
                             </td>
@@ -119,7 +112,7 @@
                         <tr>
                             <th>Preço Venda</th>
                             <td>
-                                <input type="number" name="preco_venda" size="15"
+                                <input type="number" name="preco_venda" step="any" size="15"
                                        value="<c:out value='${produto.precoVenda}' />"
                                        />
                             </td>
@@ -127,7 +120,7 @@
                         <tr>
                             <th>Quantidade</th>
                             <td>
-                                <input type="number" name="preco_compra" size="15"
+                                <input type="number" name="quantidade" size="15"
                                        value="<c:out value='${produto.quantidade}' />"
                                        />
                             </td>

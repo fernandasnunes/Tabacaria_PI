@@ -11,50 +11,47 @@ public class Produto {
     private String nome;
     private String marca;
     private String descricao;
-    private String categoria;
     private Double precoCompra;
     private Double precoVenda;
     private int quantidade;       
-    private String datacadastro; 
+    private String dataCadastro; 
     
    
 
     public Produto() {
     }
 
-    public Produto(Long id, String nome, String marca, String descricao, String categoria, Double precoCompra, Double precoVenda, int quantidade, String datacadastro) {
+    public Produto(Long id, String nome, String marca, String descricao, Double precoCompra, Double precoVenda, int quantidade, String dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.marca = marca;
         this.descricao = descricao;
-        this.categoria = categoria;
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
         this.quantidade = quantidade;
-        this.datacadastro = datacadastro;
+        this.dataCadastro = dataCadastro;
     }
 
     
 
-    public Produto(String nome, String marca, String descricao, String categoria, Double precoCompra, Double precoVenda, int quantidade, String datacadastro) {
+    public Produto(String nome, String marca, String descricao, Double precoCompra, Double precoVenda, int quantidade, String dataCadastro) {
         this.nome = nome;
         this.marca = marca;
         this.descricao = descricao;
-        this.categoria = categoria;
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
         this.quantidade = quantidade;
-        this.datacadastro = datacadastro;
+        this.dataCadastro = dataCadastro;
     }
 
     
     
-    public String getDatacadastro() {
-        return datacadastro;
+    public String getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setDatacadastro(String datacadastro) {
-        this.datacadastro = datacadastro;
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
    
     public Long getId() {
@@ -87,14 +84,6 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categorias) {
-        this.categoria = categorias;
     }
 
     public Double getPrecoCompra() {
