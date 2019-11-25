@@ -1,10 +1,10 @@
-
 package br.senac.pg.tabacaria.servlet.cliente;
 
 import br.senac.pg.tabacaria.dao.ClienteDAO;
 import br.senac.pg.tabacaria.model.Cliente;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,13 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author rafael
- */
 @WebServlet("/Cliente/*")
 public class ClienteServlet extends HttpServlet {
-   
 
     private ClienteDAO clienteDAO;
 
@@ -35,9 +30,10 @@ public class ClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getPathInfo();
-        
-        if(action == null)
+
+        if (action == null) {
             action = "/Listar";
+        }
         try {
             switch (action) {
                 case "/Novo":
@@ -58,7 +54,7 @@ public class ClienteServlet extends HttpServlet {
                 case "/Listar":
                     listarCliente(request, response);
                     break;
-                
+
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -72,8 +68,7 @@ public class ClienteServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Cliente/pesquisarCliente.jsp");
         dispatcher.forward(request, response);
     }
-    
-    
+
     private void novoFormulario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Cliente/cadastrarCliente.jsp");
@@ -87,7 +82,6 @@ public class ClienteServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Cliente/cadastrarCliente.jsp");
         request.setAttribute("cliente", existingUser);
         dispatcher.forward(request, response);
-
     }
 
     private void inserirCliente(HttpServletRequest request, HttpServletResponse response)
@@ -100,7 +94,9 @@ public class ClienteServlet extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
-        Cliente novoCliente = new Cliente(nome, sexo, datanascimento, cpf, endereco, telefone, email);
+        String date = LocalDate.now().toString();
+        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
+        Cliente novoCliente = new Cliente(nome, sexo, datanascimento, cpf, endereco, telefone, email, date, ativo);
         clienteDAO.inserirCliente(novoCliente);
         response.sendRedirect("Listar");
     }
@@ -115,8 +111,9 @@ public class ClienteServlet extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
-
-        Cliente cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email);
+        String datacadastro = request.getParameter("datacadastro");
+        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
+        Cliente cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, ativo);
         clienteDAO.editarCliente(cliente);
         response.sendRedirect("Listar");
     }

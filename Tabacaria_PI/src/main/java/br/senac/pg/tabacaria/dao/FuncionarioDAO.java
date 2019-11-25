@@ -12,31 +12,25 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author fernanda
- */
 public class FuncionarioDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3307/tabacaria";
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
     
     
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FUNCIONARIO" + "  (NOME, CARGO, ENDERECO, SEXO, TELEFONE) VALUES " +
-        " (?, ?, ?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FUNCIONARIO" + "  (NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ATIVO) VALUES " +
+        " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, CARGO, ENDERECO, SEXO, TELEFONE FROM TABACARIA.FUNCIONARIO WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ATIVO FROM TABACARIA.FUNCIONARIO WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.FUNCIONARIO;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.FUNCIONARIO WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.FUNCIONARIO SET NOME = ?,CARGO= ?, ENDERECO = ?, SEXO= ?,TELEFONE = ? WHERE ID = ?;";
-        
-     
-            
-    
-      
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.FUNCIONARIO SET NOME = ?,CARGO = ?, ENDERECO = ?, SEXO= ?,TELEFONE = ?, DATACADASTRO = ?, LOGIN = ?, SENHA = ?, ATIVO = ? WHERE ID = ?;";
+       
     protected Connection getConnection() {
         Connection connection = null;
         try {
@@ -64,6 +58,10 @@ public class FuncionarioDAO {
             preparedStatement.setString(3, funcionario.getEndereco());
             preparedStatement.setString(4, funcionario.getSexo());
             preparedStatement.setString(5, funcionario.getTelefone());
+            preparedStatement.setString(6, funcionario.getDatacadastro());
+            preparedStatement.setString(7, funcionario.getLogin());
+            preparedStatement.setString(8, funcionario.getSenha());
+            preparedStatement.setBoolean(9, funcionario.isAtivo());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -90,30 +88,28 @@ public class FuncionarioDAO {
                 String endereco = rs.getString("ENDERECO");
                 String sexo = rs.getString("SEXO");
                 String telefone = rs.getString("TELEFONE");
+                String datacadastro = rs.getString("DATACADASTRO");
+                String login = rs.getString("LOGIN");
+                String senha = rs.getString("SENHA");
+                boolean ativo = rs.getBoolean("ATIVO");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                 
+
+
                 
-                funcionario = new Funcionario(nome, cargo, endereco, sexo, telefone);
-                
-            }
+                funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo);
+                }
         } catch (SQLException e) {
             printSQLException(e);
         }
         return funcionario;
     }
-
     public List <Funcionario> selecionarTodosFuncionarios() {
-
-        // using try-with-resources to avoid closing resources (boiler plate code)
         List <Funcionario> lista = new ArrayList <>();
-        // Step 1: Establishing a Connection
-        try (Connection connection = getConnection();
-
-            // Step 2:Create a statement using connection object
+              try (Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
-
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 Long id = rs.getLong("ID");
                 String nome = rs.getString("NOME");
@@ -121,14 +117,17 @@ public class FuncionarioDAO {
                 String endereco = rs.getString("ENDERECO");
                 String sexo = rs.getString("SEXO");
                 String telefone = rs.getString("TELEFONE");
-                lista.add(new Funcionario(id, nome, cargo, endereco, sexo, telefone));
+                String datacadastro = rs.getString("DATACADASTRO");
+                String login = rs.getString("LOGIN");
+                String senha = rs.getString("SENHA");
+                boolean ativo = rs.getBoolean("ATIVO");
+                lista.add(new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
         return lista;
     }
-
     public boolean deletarFuncionario(int id) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
@@ -137,7 +136,6 @@ public class FuncionarioDAO {
         }
         return rowDeleted;
     }
-
     public boolean editarFuncionario(Funcionario funcionario) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
@@ -146,9 +144,12 @@ public class FuncionarioDAO {
             statement.setString(3, funcionario.getEndereco());
             statement.setString(4, funcionario.getSexo());
             statement.setString(5, funcionario.getTelefone());
-            statement.setLong(6, funcionario.getId());
-
-            rowUpdated = statement.executeUpdate() > 0;
+            statement.setString(6, funcionario.getDatacadastro());
+            statement.setString(7, funcionario.getLogin());
+            statement.setString(8, funcionario.getSenha());
+            statement.setBoolean(9, funcionario.isAtivo());
+            statement.setLong(10, funcionario.getId());
+rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
     }

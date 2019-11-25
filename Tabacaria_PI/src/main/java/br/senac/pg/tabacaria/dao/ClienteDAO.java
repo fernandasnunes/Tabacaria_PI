@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +23,13 @@ public class ClienteDAO {
     private String jdbcPassword = "";
     
     
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.CLIENTE" + "  (NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, EMAIL) VALUES " +
-        " (?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.CLIENTE" + "  (NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, EMAIL, DATACADASTRO, ATIVO) VALUES " +
+        " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, EMAIL FROM TABACARIA.CLIENTE WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, EMAIL, DATACADASTRO, ATIVO FROM TABACARIA.CLIENTE WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.CLIENTE;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.CLIENTE WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.CLIENTE SET NOME = ?,SEXO= ?, DATANASCIMENTO = ?, CPF= ?,ENDERECO = ?, TELEFONE = ?, EMAIL = ? WHERE ID = ?;";
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.CLIENTE SET NOME = ?,SEXO= ?, DATANASCIMENTO = ?, CPF= ?,ENDERECO = ?, TELEFONE = ?, EMAIL = ?, ATIVO = ? WHERE ID = ?;";
         
      
             
@@ -63,6 +64,8 @@ public class ClienteDAO {
             preparedStatement.setString(5, cliente.getEndereco());
             preparedStatement.setString(6, cliente.getTelefone());
             preparedStatement.setString(7, cliente.getEmail());
+            preparedStatement.setString(8, cliente.getDatacadastro());
+            preparedStatement.setBoolean(9, cliente.isAtivo());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -91,7 +94,9 @@ public class ClienteDAO {
                 String endereco = rs.getString("ENDERECO");
                 String telefone = rs.getString("TELEFONE");
                 String email = rs.getString("EMAIL");
-                cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email);
+                boolean ativo = rs.getBoolean("ATIVO");
+                String datacadastro = rs.getString("DATACADASTRO");
+                cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, ativo);
                 
             }
         } catch (SQLException e) {
@@ -123,7 +128,9 @@ public class ClienteDAO {
                 String endereco = rs.getString("ENDERECO");
                 String telefone = rs.getString("TELEFONE");
                 String email = rs.getString("EMAIL");
-                lista.add(new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email));
+                String datacadastro = rs.getString("DATACADASTRO");
+                boolean ativo = rs.getBoolean("ATIVO");
+                lista.add(new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, ativo));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -150,8 +157,8 @@ public class ClienteDAO {
             statement.setString(5, cliente.getEndereco());
             statement.setString(6, cliente.getTelefone());
             statement.setString(7, cliente.getEmail());
-            statement.setLong(8, cliente.getId());
-
+            statement.setBoolean(8, cliente.isAtivo());
+            statement.setLong(9, cliente.getId());
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;

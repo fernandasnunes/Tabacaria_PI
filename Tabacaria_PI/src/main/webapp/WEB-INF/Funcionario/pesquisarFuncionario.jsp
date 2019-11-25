@@ -5,7 +5,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="formatacao.css"/>
-        <title>Pesquisar Funcionario</title>
+        <title>Gerenciamento de Funcionarios</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
@@ -35,16 +35,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item ">
-        <a class="nav-link" href="Home">Home<span class="sr-only"></span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}">Home<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Cliente">Cliente</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Funcionario">Funcionário</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Funcionario">Funcionário</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="Produto">Produto<span class="sr-only"></span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Privilegiado</a>
@@ -52,15 +52,11 @@
     </ul>
   </div>
 </nav>
-        
-                 <center>
+    <center>
   <h1>Gerenciamento de Funcionarios</h1>
         <h2>
-         <a href="Funcionario/Novo">Novo Funcionario</a>
-        
-         
-         
-        </h2>
+         <a href="${pageContext.request.contextPath}/Funcionario/Novo">Novo Funcionario</a>
+</h2>
  </center>
     <div align="center">
         <table border="1" cellpadding="5">
@@ -77,9 +73,9 @@
                     <td><c:out value="${funcionario.nome}" /></td>
                     <td><c:out value="${funcionario.cargo}" /></td>
                     <td>
-                     <a href="Editar?id=<c:out value='${funcionario.id}' />">Editar</a>
+                     <a href="${pageContext.request.contextPath}/Funcionario/Editar?id=<c:out value='${funcionario.id}' />">Editar</a>
                      
-                     <a href="Deletar?id=<c:out value='${funcionario.id}' />">Deletar</a>                     
+                     <a href="${pageContext.request.contextPath}/Funcionario/Deletar?id=<c:out value='${funcionario.id}' />">Deletar</a>                     
                     </td>
                 </tr>
             </c:forEach>

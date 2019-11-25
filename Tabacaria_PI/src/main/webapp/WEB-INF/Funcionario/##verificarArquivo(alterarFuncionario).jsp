@@ -33,7 +33,7 @@
                     <div class="col-12">                       
                         <div>
                             <form method="post" action="${pageContext.request.contextPath}/Alterar">
-                                <input type="hidden" value="${id}" name="codFunc" id="codFunc"/>
+                    <input type="hidden" value="${id}" name="codFuncionario" id="codFuncionario"/>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="nome">Nome</label>
                                     <div class="col-sm-5">

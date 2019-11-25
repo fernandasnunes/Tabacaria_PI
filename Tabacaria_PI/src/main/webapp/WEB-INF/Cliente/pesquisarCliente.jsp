@@ -5,7 +5,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="formatacao.css"/>
-        <title>Pesquisar Cliente</title>
+        <title>Gerenciamento de Clientes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
@@ -35,7 +35,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item ">
-        <a class="nav-link" href="${pageContext.request.contextPath}/Home">Home<span class="sr-only"></span></a>
+        <a class="nav-link" href="${pageContext.request.contextPath}">Home<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
@@ -53,18 +53,14 @@
   </div>
 </nav>
         
-                 <center>
+ <center>
   <h1>Gerenciamento de Clientes</h1>
         <h2>
          <a href="${pageContext.request.contextPath}/Cliente/Novo">Novo Cliente</a>
-        
-         
-         
         </h2>
  </center>
     <div align="center">
         <table border="1" cellpadding="5">
-           
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -80,15 +76,13 @@
                     <td><c:out value="${cliente.telefone}" /></td>
                     <td>
                         <a href="${pageContext.request.contextPath}/Cliente/Editar?id=<c:out value='${cliente.id}' />">Editar</a>
-                     
-                     <a href="${pageContext.request.contextPath}/Cliente/Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
+                      <a href="${pageContext.request.contextPath}/Cliente/Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
                     </td>
                 </tr>
             </c:forEach>
         </table>
     </div> 
-  
-    </body>
+      </body>
 </html>
 
 

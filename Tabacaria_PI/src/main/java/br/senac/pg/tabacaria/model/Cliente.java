@@ -1,5 +1,7 @@
 package br.senac.pg.tabacaria.model;
 
+import java.time.LocalDate;
+
 
 
 
@@ -13,11 +15,13 @@ public class Cliente {
     private String endereco;
     private String telefone;  
     private String email;
+    private String datacadastro;
+    private boolean ativo;
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email) {
+    public Cliente(String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo) {
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
@@ -25,11 +29,11 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
-    }
+        this.datacadastro = datacadastro;
+        this.ativo = ativo;
+    }   
 
-    
-    
-    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email) {
+    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, boolean ativo) {
         this.id = id;
         this.nome = nome;
         this.sexo = sexo;
@@ -38,6 +42,21 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+        this.ativo = ativo;
+    }
+    
+    
+    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.sexo = sexo;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+        this.datacadastro = datacadastro;
+        this.ativo = ativo;
     }
 
     public Long getId() {
@@ -105,13 +124,21 @@ public class Cliente {
     }
     
     
-  
-   
-    
-   
 
-    
-   
+    public String getDatacadastro() {
+        return datacadastro;
+    }
 
-    
+    public void setDatacadastro(String datacadastro) {
+        this.datacadastro = datacadastro;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+   
 }

@@ -19,18 +19,39 @@ public class Funcionario {
     private String endereco;
     private String sexo;
     private String telefone;
+    private String datacadastro;
+    private String login;
+    private String senha;
+    private boolean ativo;
   
 
     public Funcionario() {
 
     }
 
-    public Funcionario(String nome, String cargo, String endereco, String sexo, String telefone) {
+    public Funcionario(String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, boolean ativo) {
         this.nome = nome;
         this.cargo = cargo;
         this.endereco = endereco;
         this.sexo = sexo;
         this.telefone = telefone;
+        this.datacadastro = datacadastro;
+        this.login = login;
+        this.senha = senha;
+        this.ativo = ativo;
+    }
+
+    public Funcionario(Long id, String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.cargo = cargo;
+        this.endereco = endereco;
+        this.sexo = sexo;
+        this.telefone = telefone;
+        this.datacadastro = datacadastro;
+        this.login = login;
+        this.senha = senha;
+        this.ativo = ativo;
     }
     
     
@@ -91,6 +112,38 @@ public class Funcionario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getDatacadastro() {
+        return datacadastro;
+    }
+
+    public void setDatacadastro(String datacadastro) {
+        this.datacadastro = datacadastro;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
    

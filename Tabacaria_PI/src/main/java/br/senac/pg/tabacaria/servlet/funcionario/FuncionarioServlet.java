@@ -4,6 +4,7 @@ import br.senac.pg.tabacaria.dao.FuncionarioDAO;
 import br.senac.pg.tabacaria.model.Funcionario;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -92,8 +93,13 @@ public class FuncionarioServlet extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String sexo = request.getParameter("sexo");
         String telefone = request.getParameter("telefone");
-        
-        Funcionario novoFuncionario = new Funcionario(nome, cargo, endereco, sexo, telefone);     
+        String datacadastro = LocalDate.now().toString();
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
+
+
+        Funcionario novoFuncionario = new Funcionario(nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo);     
         funcionarioDAO.inserirFuncionario(novoFuncionario);
         response.sendRedirect("Listar");
     
@@ -107,9 +113,12 @@ public class FuncionarioServlet extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String sexo = request.getParameter("sexo");
         String telefone = request.getParameter("telefone");
-
-        Funcionario funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone);
-        funcionarioDAO.inserirFuncionario(funcionario);
+         String datacadastro = LocalDate.now().toString();
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
+        Funcionario funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo);
+        funcionarioDAO.editarFuncionario(funcionario);
         response.sendRedirect("Listar");
     }
 

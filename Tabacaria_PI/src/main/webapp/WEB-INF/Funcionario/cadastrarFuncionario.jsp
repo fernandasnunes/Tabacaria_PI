@@ -1,13 +1,17 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="formatacao.css"/>
-        <title>Cadastro de Funcionário</title>
-        <meta charset="UTF-8">       
+         <c:if test="${funcionario == null}">
+        <title>Cadastrar novo funcionario</title>
+         </c:if><c:if test="${funcionario != null}">
+        <title>Alterar funcionario: <c:out value='${funcionario.nome}' /></title>
+         </c:if>
+        
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -25,25 +29,38 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-
-
+     
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link" href="${pageContext.request.contextPath}">Home<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/Funcionario">Funcionário</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Privilegiado</a>
+      </li>
+    </ul>
+  </div>
+</nav>
         
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-        
-        <center>
+ <center>
   <h1>Gerenciamento de Funcionarios</h1>
-        <h2>
-         <a href="Novo">Novo Funcionario</a>
-         
-         <a href="Listar">Listar Funcionarios</a>
-         
-        </h2>
- </center>
+        </center>
     <div align="center">
   <c:if test="${funcionario != null}">
    <form action="Edicao" method="post">
@@ -52,25 +69,24 @@
    <form action="Inserir" method="post">
         </c:if>
         <table border="1" cellpadding="5">
-            <caption>
              <h2>
               <c:if test="${funcionario != null}">
-               Editar Funcionario
+               Edição Funcionario
               </c:if>
               <c:if test="${funcionario == null}">
                Novo Funcionario
               </c:if>
              </h2>
-            </caption>
           <c:if test="${funcionario != null}">
            <input type="hidden" name="id" value="<c:out value='${funcionario.id}' />" />
-          </c:if>            
+          
+
+          </c:if>
+           
             <tr>
                 <th>Nome</th>
                 <td>
-                    <input type="text" name="nome" size="45"
-                   value="<c:out value='${funcionario.nome}' />"
-                  />
+                    <input type="text" name="nome" size="45" id="nome" value="<c:out value='${funcionario.nome}' />"/>
                 </td>
             </tr>
             <tr>
@@ -92,24 +108,90 @@
              <tr>
                 <th>Sexo</th>
                 <td>
-                 <input type="text" name="sexo" size="15"
-                   value="<c:out value='${funcionario.sexo}' />"
-                 />
+              <c:if test="${funcionario != null}">
+                  <c:if test='${funcionario.sexo=="Masculino"}'>
+                <input type="radio" name="sexo" value="Masculino" checked> Masculino
+                <input type="radio" name="sexo" value="Feminino"> Feminino
+                  </c:if>
+                <c:if test='${funcionario.sexo=="Feminino"}'>
+                <input type="radio" name="sexo" value="Masculino"> Masculino
+                <input type="radio" name="sexo" value="Feminino" checked> Feminino
+            </c:if>
+              </c:if>
+              <c:if test="${funcionario == null}">
+               <input type="radio" name="sexo" value="Masculino" checked> Masculino
+                <input type="radio" name="sexo" value="Feminino"> Feminino
+              </c:if>
                 </td>
             </tr>
              <tr>
                 <th>Telefone</th>
                 <td>
-                 <input type="text" name="telefone" size="15"
+                 <input type="number" name="telefone" size="15"
                    value="<c:out value='${funcionario.telefone}' />"
                  />
                 </td>
             </tr>
+             <tr>
+                <th>Login</th>
+                <td>
+                 <input type="text" name="login" size="15"
+                   value="<c:out value='${funcionario.login}' />"
+                 />
+                </td>
+            </tr> <tr>
+                <th>Senha</th>
+                <td>
+                 <input type="text" name="senha" size="15"
+                   value="<c:out value='${funcionario.senha}' />"
+                 />
+                </td>
+            </tr>
+            
+            
+            
+            
+            
+            
+             <tr>
+                <th>Status</th>
+                <td>
+                 <c:if test="${funcionario != null}">
+                  
+                   <c:if test='${funcionario.ativo=="true"}'>
+                <input type="radio" name="ativo" value="true"checked> Ativo
+                <input type="radio" name="ativo" value="false"> Desativado
+                  </c:if>
+                
+                    <c:if test='${funcionario.ativo=="false"}'>
+                <input type="radio" name="ativo" value="true"> Ativo
+                <input type="radio" name="ativo" value="false" checked> Desativado
+                  </c:if>
+              
+                  <tr>
+                <th>Data de cadastro</th>
+                <td>
+                    <c:out value='${funcionario.datacadastro}'></c:out>
+                 
+                </td>
+            </tr>
+                 </c:if>
+              <c:if test="${funcionario == null}">
+               <input type="radio" name="ativo" value="true" checked> Ativo
+               <input type="radio" name="ativo" value="false"> Desativado
+              </c:if></td>
+            </tr>
+            
+            
+            
+            
            
             
             <tr>
              <td colspan="2" align="center">
               <input type="submit" value="Salvar" />
+             <input type="button" value="Cancel" onclick="javascript:window.location='${pageContext.request.contextPath}/Funcionario';" />
+
              </td>
             </tr>
         </table>
