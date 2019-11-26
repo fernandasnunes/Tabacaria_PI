@@ -5,7 +5,11 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="formatacao.css"/>
-        <title>Gerenciamento de Clientes</title>
+        <c:if test="${filial == null}">
+        <title>Cadastrar nova filial</title>
+         </c:if><c:if test="${filial != null}">
+        <title>Alterar filial <c:out value='${filial.localidade}' /></title>
+         </c:if>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
@@ -46,7 +50,7 @@
       <li class="nav-item ">
         <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
       </li>
-      <li class="nav-item ">
+       <li class="nav-item ">
         <a class="nav-link" href="${pageContext.request.contextPath}/Filial">Filial<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
@@ -57,35 +61,60 @@
 </nav>
         
  <center>
-  <h1>Gerenciamento de Clientes</h1>
-        <h2>
-         <a href="${pageContext.request.contextPath}/Cliente/Novo">Novo Cliente</a>
-        </h2>
+  <h1>Gerenciamento de Filiais</h1>
  </center>
     <div align="center">
+  <c:if test="${filial != null}">
+   <form action="Edicao" method="post">
+        </c:if>
+        <c:if test="${filial == null}">
+   <form action="Inserir" method="post">
+        </c:if>
         <table border="1" cellpadding="5">
+            
+             <h2>
+              <c:if test="${filial != null}">
+               Edição de Filial
+              </c:if>
+              <c:if test="${filial == null}">
+               Nova Filial
+              </c:if>
+             </h2>
+            
+          <c:if test="${filial != null}">
+           <input type="hidden" name="id" value="<c:out value='${filial.id}'/>" />
+          </c:if>            
             <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Telefone</th>
-                <th>Ações</th>
+                <th>Localidade</th>
+                <td>
+                    <input type="text" name="localidade" size="45" value="<c:out value='${filial.localidade}' />"/>
+                </td>
             </tr>
-            <c:forEach var="cliente" items="${listaClientes}">
-                <tr>
-                    <td><c:out value="${cliente.id}" /></td>
-                    <td><c:out value="${cliente.nome}" /></td>
-                    <td><c:out value="${cliente.cpf}" /></td>
-                    <td><c:out value="${cliente.telefone}" /></td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/Cliente/Editar?id=<c:out value='${cliente.id}' />">Editar</a>
-                      <a href="${pageContext.request.contextPath}/Cliente/Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
-                    </td>
-                </tr>
-            </c:forEach>
+                 <tr>
+                <th>Responsável</th>
+                <td>
+                 <input type="text" name="responsavel" size="45"
+                   value="<c:out value='${filial.responsavel}' />"
+                 />
+                </td>
+            </tr>
+             <tr>
+                <th>Data Cadastro</th>
+                <td>
+                 <c:out value='${filial.dataCadastro}' />
+                 
+                </td>
+            </tr>
+            <tr>
+             <td colspan="2" align="center">
+              <input type="submit" value="Salvar" />
+             <input type="button" value="Cancel" onclick="javascript:window.location='${pageContext.request.contextPath}/Filial';" />
+
+            </tr>
+            
         </table>
-    </div> 
-      </body>
+        </form>
+    </div>
+
+    </body>
 </html>
-
-

@@ -57,29 +57,28 @@
 </nav>
         
  <center>
-  <h1>Gerenciamento de Clientes</h1>
+  <h1>Gerenciamento de Filiais</h1>
         <h2>
-         <a href="${pageContext.request.contextPath}/Cliente/Novo">Novo Cliente</a>
+         <a href="${pageContext.request.contextPath}/Filial/Novo">Nova Filial</a>
         </h2>
  </center>
     <div align="center">
         <table border="1" cellpadding="5">
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Telefone</th>
+                <th>Localidade</th>
+                <th>Responsável</th>
                 <th>Ações</th>
             </tr>
-            <c:forEach var="cliente" items="${listaClientes}">
+            <c:forEach var="filial" items="${listaFilial}">
                 <tr>
-                    <td><c:out value="${cliente.id}" /></td>
-                    <td><c:out value="${cliente.nome}" /></td>
-                    <td><c:out value="${cliente.cpf}" /></td>
-                    <td><c:out value="${cliente.telefone}" /></td>
+                    <td><c:out value="${filial.id}" /></td>
+                    <td><c:out value="${filial.localidade}" /></td>
+                    <td><c:out value="${filial.responsavel}" /></td>
+                    
                     <td>
-                        <a href="${pageContext.request.contextPath}/Cliente/Editar?id=<c:out value='${cliente.id}' />">Editar</a>
-                      <a href="${pageContext.request.contextPath}/Cliente/Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
+                        <a href="${pageContext.request.contextPath}/Filial/Editar?id=<c:out value='${filial.id}' />">Editar</a>
+                      <a href="${pageContext.request.contextPath}/Filial/Deletar?id=<c:out value='${filial.id}' />">Deletar</a>                     
                     </td>
                 </tr>
             </c:forEach>

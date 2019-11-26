@@ -10,41 +10,7 @@
     </head>
     <body>
 
-        <!--        <nav >
-                    <ul class="menu">
-                        <li><a href="#">Cadastros</a>
-                            <ul>
-                                <li><a href="./CadastrarCliente">Clientes</a></li>                       
-                                <li><a href="./IncluirFuncionario">Funcionários</a></li>
-                                <li><a href="./IncluirProduto">Produtos</a></li>                  
-                                <li><a href="./IncluirUsuario">Usuários</a></li> 
-                            </ul>
-                        </li>
-                        <li><a href="#">Pesquisar</a>
-                            <ul>
-                                <li><a href="./ConsultarCliente">Clientes</a></li>
-                                <li><a href="./ConsultaProduto">Produto</a></li>
-                                <li><a href="./ConsultaFuncionario">Funcionário</a></li>
-                                <li><a href="./ConsultaUsuario">Usuário</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Relatorios</a>
-                            <ul>
-                                <li><a href="#">Relatorio1</a></li>
-                                <li><a href="#">Relatorio2</a></li>
-                                <li><a href="#">Relatorio3</a></li>                    
-                            </ul>
-                        </li>
-                        <li><a href="#">Sobre</a>
-                        </li>
-                        <li><a href="#">Usuário: ${nome}</a>
-                            <ul>
-                                <li><a href="index.html">Sair</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
- -->
+      
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
 
@@ -71,6 +37,9 @@
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="${pageContext.request.contextPath}/Filial">Filial<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Privilegiado</a>

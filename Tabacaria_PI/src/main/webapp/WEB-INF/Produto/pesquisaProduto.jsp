@@ -47,6 +47,9 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Filial">Filial<span class="sr-only"></span></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Privilegiado</a>
                     </li>
@@ -72,13 +75,13 @@
             <c:forEach var="produto" items="${listaProdutos}">
                 <tr>
                     <td><c:out value="${produto.id}" /></td>
-                <td><c:out value="${produto.nome}" /></td>
-                <td><c:out value="${produto.precoCompra}" /></td>
-                <td><c:out value="${produto.precoVenda}" /></td>
-                <td>
-                    <a href="${pageContext.request.contextPath}/Produto/Editar?id=<c:out value='${produto.id}' />">Editar</a>
-                    <a href="${pageContext.request.contextPath}/Produto/Deletar?id=<c:out value='${produto.id}' />">Deletar</a>                     
-                </td>
+                    <td><c:out value="${produto.nome}" /></td>
+                    <td><c:out value="${produto.precoCompra}" /></td>
+                    <td><c:out value="${produto.precoVenda}" /></td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/Produto/Editar?id=<c:out value='${produto.id}' />">Editar</a>
+                        <a href="${pageContext.request.contextPath}/Produto/Deletar?id=<c:out value='${produto.id}' />">Deletar</a>                     
+                    </td>
                 </tr>
             </c:forEach>
         </table>

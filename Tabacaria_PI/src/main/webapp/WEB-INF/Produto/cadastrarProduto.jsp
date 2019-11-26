@@ -48,6 +48,9 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/Filial">Filial<span class="sr-only"></span></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Privilegiado</a>
                     </li>
@@ -101,7 +104,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <tr>
+                        <tr>
                             <th>Preço Compra</th>
                             <td>
                                 <input type="number" name="preco_compra" step="any" size="15"
