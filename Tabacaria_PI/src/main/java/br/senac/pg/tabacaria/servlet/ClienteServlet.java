@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Cliente/*")
+@WebServlet("/pgProtect/Cliente/*")
 public class ClienteServlet extends HttpServlet {
 
     private ClienteDAO clienteDAO;

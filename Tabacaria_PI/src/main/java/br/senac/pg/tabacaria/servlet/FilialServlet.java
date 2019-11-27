@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/Filial/*")
+@WebServlet("/pgProtect/Filial/*")
 public class FilialServlet extends HttpServlet {
 
     private FilialDAO filialDAO;
@@ -32,6 +32,8 @@ public class FilialServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getPathInfo();
 
+        
+        
         if (action == null) {
             action = "/Listar";
         }

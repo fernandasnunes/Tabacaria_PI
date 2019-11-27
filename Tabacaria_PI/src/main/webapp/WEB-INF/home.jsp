@@ -1,32 +1,26 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="formatacao.css"/>
-        <title>Gerenciamento de Clientes</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-              crossorigin="anonymous">
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
 
-     
+        <link href="menuformatacao.css" type="text/css" rel="stylesheet" />
+        <title>Home Page</title>
+        <meta charset="UTF-8">
+
     </head>
-    <body><c:choose>
+    <body>
+
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+
+
+        </script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+        <c:choose>
             <c:when test="${sessionScope.usuario != null}">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="">Navbar</a>
@@ -65,35 +59,6 @@
         </nav>
     </c:when>
 </c:choose>
- <center>
-  <h1>Gerenciamento de Filiais</h1>
-        <h2>
-         <a href="${pageContext.request.contextPath}/pgProtect/Filial/Novo">Nova Filial</a>
-        </h2>
- </center>
-    <div align="center">
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>ID</th>
-                <th>Localidade</th>
-                <th>Responsável</th>
-                <th>Ações</th>
-            </tr>
-            <c:forEach var="filial" items="${listaFilial}">
-                <tr>
-                    <td><c:out value="${filial.id}" /></td>
-                    <td><c:out value="${filial.localidade}" /></td>
-                    <td><c:out value="${filial.responsavel}" /></td>
-                    
-                    <td>
-                        <a href="${pageContext.request.contextPath}/pgProtect/Filial/Editar?id=<c:out value='${filial.id}' />">Editar</a>
-                      <a href="${pageContext.request.contextPath}/pgProtect/Filial/Deletar?id=<c:out value='${filial.id}' />">Deletar</a>                     
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div> 
-      </body>
+</body>
+
 </html>
-
-

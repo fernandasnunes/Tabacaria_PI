@@ -23,12 +23,12 @@
             <name>Rafael Dini</name>
         </developer>
         <developer>
-            <id>Rafael Moraes</id>
-            <name>Rafael Moraes</name>
+            <id>Raffael Moraes</id>
+            <name>Raffael Moraes</name>
         </developer>
         <developer>
-            <id>serafim</id>
-            <name>Vitor Serafim</name>
+            <id>Victor Serafim</id>
+            <name>Victor Serafim</name>
            
         </developer>
         
@@ -57,6 +57,13 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+<dependency>
+    <groupId>org.mindrot</groupId>
+    <artifactId>jbcrypt</artifactId>
+    <version>0.4</version>
+    <type>jar</type>
+</dependency>
+
     </dependencies>
 
     <build>

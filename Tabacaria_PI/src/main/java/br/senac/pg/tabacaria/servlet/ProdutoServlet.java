@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author rafael
  */
-@WebServlet("/Produto/*")
+@WebServlet("/pgProtect/Produto/*")
 public class ProdutoServlet extends HttpServlet {
     
      private ProdutoDAO produtoDAO;

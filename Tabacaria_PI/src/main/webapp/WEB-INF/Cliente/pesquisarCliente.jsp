@@ -26,40 +26,49 @@
 
      
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item ">
-        <a class="nav-link" href="${pageContext.request.contextPath}">Home<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/Cliente">Cliente</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/Funcionario">Funcionário</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="${pageContext.request.contextPath}/Produto">Produto<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="${pageContext.request.contextPath}/Filial">Filial<span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Privilegiado</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-        
+    <body><c:choose>
+            <c:when test="${sessionScope.usuario != null}">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Home">Home<span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Cliente">Cliente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Funcionario">Funcionário</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Produto">Produto<span class="sr-only"></span></a>
+                            </li>
+                            <c:if test="${sessionScope.usuario.verificarPapel('GERENTE')}">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Filial">Filial<span class="sr-only"></span></a>
+                                </li>
+                            </c:if>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="${pageContext.request.contextPath}/logout">SAIR DO SISTEMA<span class="sr-only"></span></a>
+                            </li>
+                            Seja bem vindo <c:out value="${sessionScope.usuario.nomeCompleto}" />
+                            <c:forEach items="${sessionScope.usuario.papeis}" var="pap">
+                                <c:out value="CARGO:${pap.nome}" />
+                            </c:forEach>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </c:when>
+</c:choose>
  <center>
   <h1>Gerenciamento de Clientes</h1>
         <h2>
-         <a href="${pageContext.request.contextPath}/Cliente/Novo">Novo Cliente</a>
+         <a href="${pageContext.request.contextPath}/pgProtect/Cliente/Novo">Novo Cliente</a>
         </h2>
  </center>
     <div align="center">
@@ -78,8 +87,8 @@
                     <td><c:out value="${cliente.cpf}" /></td>
                     <td><c:out value="${cliente.telefone}" /></td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/Cliente/Editar?id=<c:out value='${cliente.id}' />">Editar</a>
-                      <a href="${pageContext.request.contextPath}/Cliente/Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
+                        <a href="${pageContext.request.contextPath}/pgProtect/Cliente/Editar?id=<c:out value='${cliente.id}' />">Editar</a>
+                      <a href="${pageContext.request.contextPath}/pgProtect/Cliente/Deletar?id=<c:out value='${cliente.id}' />">Deletar</a>                     
                     </td>
                 </tr>
             </c:forEach>
