@@ -21,13 +21,13 @@ public class FuncionarioDAO {
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FUNCIONARIO" + "  (NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL) VALUES "
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FUNCIONARIO" + "  (NOME, ID_CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL) VALUES "
             + " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL FROM TABACARIA.FUNCIONARIO WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, ID_CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL FROM TABACARIA.FUNCIONARIO WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.FUNCIONARIO;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.FUNCIONARIO WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.FUNCIONARIO SET NOME = ?,CARGO = ?, ENDERECO = ?, SEXO= ?,TELEFONE = ?, DATACADASTRO = ?, LOGIN = ?, SENHA = ?, ID_FILIAL = ? WHERE ID = ?;";
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.FUNCIONARIO SET NOME = ?,ID_CARGO = ?, ENDERECO = ?, SEXO= ?,TELEFONE = ?, DATACADASTRO = ?, LOGIN = ?, SENHA = ?, ID_FILIAL = ? WHERE ID = ?;";
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -53,7 +53,7 @@ public class FuncionarioDAO {
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, funcionario.getNome());
-            preparedStatement.setString(2, funcionario.getCargo());
+            preparedStatement.setInt(2, funcionario.getIdCargo());
             preparedStatement.setString(3, funcionario.getEndereco());
             preparedStatement.setString(4, funcionario.getSexo());
             preparedStatement.setString(5, funcionario.getTelefone());
@@ -84,7 +84,7 @@ public class FuncionarioDAO {
             while (rs.next()) {
 
                 String nome = rs.getString("NOME");
-                String cargo = rs.getString("CARGO");
+                int idCargo = rs.getInt("ID_CARGO");
                 String endereco = rs.getString("ENDERECO");
                 String sexo = rs.getString("SEXO");
                 String telefone = rs.getString("TELEFONE");
@@ -94,7 +94,7 @@ public class FuncionarioDAO {
                 int idFilial = rs.getInt("ID_FILIAL");
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-                funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
+                funcionario = new Funcionario(id, nome, idCargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -111,7 +111,7 @@ public class FuncionarioDAO {
             while (rs.next()) {
                 Long id = rs.getLong("ID");
                 String nome = rs.getString("NOME");
-                String cargo = rs.getString("CARGO");
+                int idCargo = rs.getInt("ID_CARGO");
                 String endereco = rs.getString("ENDERECO");
                 String sexo = rs.getString("SEXO");
                 String telefone = rs.getString("TELEFONE");
@@ -120,7 +120,7 @@ public class FuncionarioDAO {
                 String senha = rs.getString("SENHA");
                 int idFilial = rs.getInt("ID_FILIAL");
                 
-                lista.add(new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial));
+                lista.add(new Funcionario(id, nome, idCargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -142,7 +142,7 @@ public class FuncionarioDAO {
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
 
             statement.setString(1, funcionario.getNome());
-            statement.setString(2, funcionario.getCargo());
+            statement.setInt(2, funcionario.getIdCargo());
             statement.setString(3, funcionario.getEndereco());
             statement.setString(4, funcionario.getSexo());
             statement.setString(5, funcionario.getTelefone());

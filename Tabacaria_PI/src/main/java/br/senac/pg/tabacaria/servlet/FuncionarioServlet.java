@@ -1,9 +1,12 @@
 package br.senac.pg.tabacaria.servlet;
 
+
+import br.senac.pg.tabacaria.dao.CargoDAO;
 import br.senac.pg.tabacaria.dao.FilialDAO;
 import br.senac.pg.tabacaria.dao.FuncionarioDAO;
 import br.senac.pg.tabacaria.model.Filial;
 import br.senac.pg.tabacaria.model.Funcionario;
+import br.senac.pg.tabacaria.model.Cargo;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -20,10 +23,12 @@ public class FuncionarioServlet extends HttpServlet {
 
     private FuncionarioDAO funcionarioDAO;
     private FilialDAO filialDAO;
+    private CargoDAO cargoDAO;
 
     public void init() {
         funcionarioDAO = new FuncionarioDAO();
         filialDAO = new FilialDAO();
+        cargoDAO = new CargoDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -76,7 +81,9 @@ public class FuncionarioServlet extends HttpServlet {
     private void novoFormulario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Filial> filiais = filialDAO.selecionarTodasFilial();
+        List<Cargo> cargos = cargoDAO.selecionarTodosCargo();
         request.setAttribute("filiais", filiais);
+        request.setAttribute("cargos", cargos);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Funcionario/cadastrarFuncionario.jsp");
         dispatcher.forward(request, response);
     }
@@ -85,8 +92,11 @@ public class FuncionarioServlet extends HttpServlet {
             throws SQLException, ServletException, IOException {
         long id = Integer.parseInt(request.getParameter("id"));
         List<Filial> filiais = filialDAO.selecionarTodasFilial();
+        List<Cargo> cargos = cargoDAO.selecionarTodosCargo();
         Funcionario existingUser = funcionarioDAO.selecionarFuncionario(id);
+        request.setAttribute("cargos", cargos);
         request.setAttribute("filiais", filiais);
+        request.setAttribute("cargoAtual", existingUser.getIdCargo());
         request.setAttribute("filialAtual", existingUser.getIdFilial());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Funcionario/cadastrarFuncionario.jsp");
         request.setAttribute("funcionario", existingUser);
@@ -97,17 +107,16 @@ public class FuncionarioServlet extends HttpServlet {
     private void inserirFuncionario(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         String nome = request.getParameter("nome");
-        String cargo = request.getParameter("cargo");
         String endereco = request.getParameter("endereco");
         String sexo = request.getParameter("sexo");
         String telefone = request.getParameter("telefone");
         String datacadastro = LocalDate.now().toString();
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
-        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
         int idFilial = Integer.parseInt(request.getParameter("filial"));
-
-        Funcionario novoFuncionario = new Funcionario(nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
+        int idCargo = Integer.parseInt(request.getParameter("cargo"));
+        
+        Funcionario novoFuncionario = new Funcionario(nome, idCargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
         funcionarioDAO.inserirFuncionario(novoFuncionario);
         response.sendRedirect("Listar");
 
@@ -117,16 +126,16 @@ public class FuncionarioServlet extends HttpServlet {
             throws SQLException, IOException {
         long id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
-        String cargo = request.getParameter("cargo");
         String endereco = request.getParameter("endereco");
         String sexo = request.getParameter("sexo");
         String telefone = request.getParameter("telefone");
         String datacadastro = LocalDate.now().toString();
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
-        boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
         int idFilial = Integer.parseInt(request.getParameter("filial"));
-        Funcionario funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
+        int idCargo = Integer.parseInt(request.getParameter("cargo"));
+        
+        Funcionario funcionario = new Funcionario(id, nome, idCargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
         funcionarioDAO.editarFuncionario(funcionario);
         response.sendRedirect("Listar");
     }

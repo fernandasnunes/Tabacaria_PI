@@ -81,10 +81,11 @@
                 <th>Ações</th>
             </tr>
             <c:forEach var="funcionario" items="${listaFuncionarios}">
+           
                 <tr>
                     <td><c:out value="${funcionario.id}" /></td>
                     <td><c:out value="${funcionario.nome}" /></td>
-                    <td><c:out value="${funcionario.cargo}" /></td>
+                    <td><c:out value="${funcionario.idCargo}" /></td>
                     <td>
                      <a href="${pageContext.request.contextPath}/pgProtect/Funcionario/Editar?id=<c:out value='${funcionario.id}' />">Editar</a>
                      

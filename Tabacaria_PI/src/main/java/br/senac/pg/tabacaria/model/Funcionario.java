@@ -15,7 +15,7 @@ public class Funcionario {
 
     private Long id;
     private String nome;
-    private String cargo;
+    private int idCargo;
     private String endereco;
     private String sexo;
     private String telefone;
@@ -23,16 +23,17 @@ public class Funcionario {
     private String login;
     private String senha;
     private int idFilial;
+    
   
 
     public Funcionario() {
 
     }
 
-    public Funcionario(Long id, String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, int idFilial) {
+    public Funcionario(Long id, String nome, int idCargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, int idFilial) {
         this.id = id;
         this.nome = nome;
-        this.cargo = cargo;
+        this.idCargo = idCargo;
         this.endereco = endereco;
         this.sexo = sexo;
         this.telefone = telefone;
@@ -42,18 +43,18 @@ public class Funcionario {
         this.idFilial = idFilial;
     }
 
-    public Funcionario(String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, int idFilial) {
+    public Funcionario(String nome, int idCargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, int idFilial) {
         this.nome = nome;
-        this.cargo = cargo;
+        this.idCargo = idCargo;
         this.endereco = endereco;
         this.sexo = sexo;
         this.telefone = telefone;
         this.datacadastro = datacadastro;
         this.login = login;
         this.senha = senha;
-        
         this.idFilial = idFilial;
     }
+
     
     public Long getId() {
         return id;
@@ -70,15 +71,7 @@ public class Funcionario {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
+    
     public String getEndereco() {
         return endereco;
     }
@@ -134,6 +127,15 @@ public class Funcionario {
     public void setIdFilial(int idFilial) {
         this.idFilial = idFilial;
     }
+
+    public int getIdCargo() {
+        return idCargo;
+    }
+
+    public void setIdCargo(int idCargo) {
+        this.idCargo = idCargo;
+    }
+    
 
    
     

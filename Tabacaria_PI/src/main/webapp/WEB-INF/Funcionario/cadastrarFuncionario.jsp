@@ -101,14 +101,30 @@
                         <input type="text" name="nome" size="45" id="nome" value="<c:out value='${funcionario.nome}' />"/>
                     </td>
                 </tr>
-                <tr>
-                    <th>Cargo</th>
-                    <td>
-                        <input type="text" name="cargo" size="45"
-                               value="<c:out value='${funcionario.cargo}' />"
-                               />
-                    </td>
-                </tr>
+                 <tr>
+                        <th>Cargo</th>
+                        <td>
+                            <select id="cargo" name="cargo">
+                                <c:forEach var="cargos" items="${cargos}">
+
+                                    <c:if test="${cargoAtual == cargos.id}">
+                                        <option value="<c:out value='${cargos.id}' />" selected>${cargos.nome}</option>
+                                    </c:if>
+                                    
+                                        <c:if test="${cargoAtual != cargos.id}">
+                                        <option value="<c:out value='${cargos.id}' />">${cargos.nome}</option>
+                                    </c:if>
+
+
+
+
+
+                                </c:forEach>
+
+
+                            </select>
+                        </td>
+                    </tr>
                 <tr>
                     <th>Endereço</th>
                     <td>
@@ -161,7 +177,7 @@
                     </td>
                 </tr>
 
-                 <c:if test="${cliente != null}">
+                 <c:if test="${funcionario != null}">
                     <tr>
                         <th>Data Cadastro</th>
                         <td>
