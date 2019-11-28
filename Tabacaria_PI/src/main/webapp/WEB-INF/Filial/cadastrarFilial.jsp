@@ -1,15 +1,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="formatacao.css"/>
         <c:if test="${filial == null}">
-        <title>Cadastrar nova filial</title>
-         </c:if><c:if test="${filial != null}">
-        <title>Alterar filial <c:out value='${filial.localidade}' /></title>
-         </c:if>
+            <title>Cadastrar nova filial</title>
+        </c:if><c:if test="${filial != null}">
+            <title>Alterar filial <c:out value='${filial.localidade}' /></title>
+        </c:if>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"
@@ -28,7 +28,7 @@
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
 
-     
+
     </head>
     <body><c:choose>
             <c:when test="${sessionScope.usuario != null}">
@@ -69,62 +69,64 @@
         </nav>
     </c:when>
 </c:choose>
-        
- <center>
-  <h1>Gerenciamento de Filiais</h1>
- </center>
-    <div align="center">
-  <c:if test="${filial != null}">
-   <form action="Edicao" method="post">
+
+<center>
+    <h1>Gerenciamento de Filiais</h1>
+</center>
+<div align="center">
+    <c:if test="${filial != null}">
+        <form action="Edicao" method="post">
         </c:if>
         <c:if test="${filial == null}">
-   <form action="Inserir" method="post">
-        </c:if>
-        <table border="1" cellpadding="5">
-            
-             <h2>
-              <c:if test="${filial != null}">
-               Edição de Filial
-              </c:if>
-              <c:if test="${filial == null}">
-               Nova Filial
-              </c:if>
-             </h2>
-            
-          <c:if test="${filial != null}">
-           <input type="hidden" name="id" value="<c:out value='${filial.id}'/>" />
-          </c:if>            
-            <tr>
-                <th>Localidade</th>
-                <td>
-                    <input type="text" name="localidade" size="45" value="<c:out value='${filial.localidade}' />"/>
-                </td>
-            </tr>
-                 <tr>
-                <th>Responsável</th>
-                <td>
-                 <input type="text" name="responsavel" size="45"
-                   value="<c:out value='${filial.responsavel}' />"
-                 />
-                </td>
-            </tr>
-             <tr>
-                <th>Data Cadastro</th>
-                <td>
-                 <c:out value='${filial.dataCadastro}' />
-                 
-                </td>
-            </tr>
-            <tr>
-             <td colspan="2" align="center">
-              <input type="submit" value="Salvar" />
-             <input type="button" value="Cancel" onclick="javascript:window.location='${pageContext.request.contextPath}/pgProtect/Filial';" />
+            <form action="Inserir" method="post">
+            </c:if>
+            <table border="1" cellpadding="5">
 
-            </tr>
-            
-        </table>
+                <h2>
+                    <c:if test="${filial != null}">
+                        Edição de Filial
+                    </c:if>
+                    <c:if test="${filial == null}">
+                        Nova Filial
+                    </c:if>
+                </h2>
+
+                <c:if test="${filial != null}">
+                    <input type="hidden" name="id" value="<c:out value='${filial.id}'/>" />
+                </c:if>            
+                <tr>
+                    <th>Localidade</th>
+                    <td>
+                        <input type="text" name="localidade" size="45" value="<c:out value='${filial.localidade}' />"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Responsável</th>
+                    <td>
+                        <input type="text" name="responsavel" size="45"
+                               value="<c:out value='${filial.responsavel}' />"
+                               />
+                    </td>
+                </tr>
+                <c:if test="${filial != null}">
+                    <tr>
+                        <th>Data Cadastro</th>
+                        <td>
+                            <c:out value='${filial.dataCadastro}' />
+
+                        </td>
+                    </tr>
+                </c:if>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Salvar" />
+                        <input type="button" value="Cancel" onclick="javascript:window.location = '${pageContext.request.contextPath}/pgProtect/Filial';" />
+
+                </tr>
+
+            </table>
         </form>
-    </div>
+</div>
 
-    </body>
+</body>
 </html>

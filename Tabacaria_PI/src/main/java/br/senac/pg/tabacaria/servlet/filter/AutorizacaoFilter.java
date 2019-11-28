@@ -78,7 +78,7 @@ public class AutorizacaoFilter implements Filter {
                 && (usuario.verificarPapel("GERENTE") || usuario.verificarPapel("FUNCIONARIO"))) {
             return true;
         } else if (urlAcessada.contains("/Funcionario")
-                && (usuario.verificarPapel("GERENTE") || usuario.verificarPapel("FUNCIONARIO"))) {
+                && (usuario.verificarPapel("GERENTE"))) {
             return true;
         } else if (urlAcessada.contains("/Home")
                 && (usuario.verificarPapel("GERENTE") || usuario.verificarPapel("FUNCIONARIO"))) {

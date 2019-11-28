@@ -137,7 +137,7 @@
                                />
                     </td>
                 </tr>
-
+                <c:if test="${produto != null}">
                     <tr>
                         <th>Data de cadastro</th>
                         <td>
@@ -145,6 +145,7 @@
 
                         </td>
                     </tr>
+            </c:if>
             <input type="hidden" name="idFilial" size="25"
                    value="<c:out value="${sessionScope.usuario.idFilial}" />"
                    <tr>

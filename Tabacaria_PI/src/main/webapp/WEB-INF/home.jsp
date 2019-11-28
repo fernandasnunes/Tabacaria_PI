@@ -36,34 +36,39 @@
                                 <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Cliente">Cliente</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Funcionario">Funcionário</a>
+                                <c:if test="${sessionScope.usuario.verificarPapel('GERENTE')}">
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Funcionario">Funcionário</a>
+                                </c:if>
+                                <c:if test="${!sessionScope.usuario.verificarPapel('GERENTE')}">
+                                    <a class="nav-link">Funcionário</a>
+                                </c:if>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Produto">Produto<span class="sr-only"></span></a>
                             </li>
-                            <c:if test="${sessionScope.usuario.verificarPapel('GERENTE')}">
-                                <li class="nav-item ">
+                            <li class="nav-item ">
+                                <c:if test="${sessionScope.usuario.verificarPapel('GERENTE')}">
                                     <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Filial">Filial<span class="sr-only"></span></a>
-                                </li>
-                            </c:if>
-                                <c:if test="${!sessionScope.usuario.verificarPapel('GERENTE')}">
-                                <li class="nav-item ">
+                                    </c:if>
+                                    <c:if test="${!sessionScope.usuario.verificarPapel('GERENTE')}">
                                     <a class="nav-link">Filial<span class="sr-only"></span></a>
-                                </li>
+                                    </c:if>
+
+                            </li>
+
+
+
+
+
+
+                            <c:if test="${msgErro != null}">
+                                <c:out value="${msgErro}" />333333333333333333          
                             </c:if>
-                                
-                                
-                                
-                                
-                                
-                                <c:if test="${msgErro != null}">
-            <c:out value="${msgErro}" />333333333333333333          
-        </c:if>
-                                
-            
-            
-            
-            
+
+
+
+
+
                             <li class="nav-item ">
                                 <a class="nav-link" href="${pageContext.request.contextPath}/logout">SAIR DO SISTEMA<span class="sr-only"></span></a>
                             </li>
