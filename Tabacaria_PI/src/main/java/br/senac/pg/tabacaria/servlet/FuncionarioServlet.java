@@ -107,7 +107,7 @@ public class FuncionarioServlet extends HttpServlet {
         boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
         int idFilial = Integer.parseInt(request.getParameter("filial"));
 
-        Funcionario novoFuncionario = new Funcionario(nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo, idFilial);
+        Funcionario novoFuncionario = new Funcionario(nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
         funcionarioDAO.inserirFuncionario(novoFuncionario);
         response.sendRedirect("Listar");
 
@@ -126,7 +126,7 @@ public class FuncionarioServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
         int idFilial = Integer.parseInt(request.getParameter("filial"));
-        Funcionario funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo, idFilial);
+        Funcionario funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
         funcionarioDAO.editarFuncionario(funcionario);
         response.sendRedirect("Listar");
     }

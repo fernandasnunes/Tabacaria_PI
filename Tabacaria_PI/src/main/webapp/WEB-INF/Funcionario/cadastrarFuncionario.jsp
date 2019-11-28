@@ -161,40 +161,16 @@
                     </td>
                 </tr>
 
-
-
-
-
-
-                <tr>
-                    <th>Status</th>
-                    <td>
-                        <c:if test="${funcionario != null}">
-
-                            <c:if test='${funcionario.ativo=="true"}'>
-                                <input type="radio" name="ativo" value="true"checked> Ativo
-                                <input type="radio" name="ativo" value="false"> Desativado
-                            </c:if>
-
-                            <c:if test='${funcionario.ativo=="false"}'>
-                                <input type="radio" name="ativo" value="true"> Ativo
-                                <input type="radio" name="ativo" value="false" checked> Desativado
-                            </c:if>
-
+                 <c:if test="${cliente != null}">
                     <tr>
-                        <th>Data de cadastro</th>
+                        <th>Data Cadastro</th>
                         <td>
-                            <c:out value='${funcionario.datacadastro}'></c:out>
+                            <c:out value='${funcionario.datacadastro}' />
 
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                 </c:if>
-                <c:if test="${funcionario == null}">
-                    <input type="radio" name="ativo" value="true" checked> Ativo
-                    <input type="radio" name="ativo" value="false"> Desativado
-                </c:if></td>
-                </tr>
-
+             
 
                 <c:if test="${sessionScope.usuario.verificarPapel('GERENTE')}">
 

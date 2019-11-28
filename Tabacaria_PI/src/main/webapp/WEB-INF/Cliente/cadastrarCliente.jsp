@@ -150,14 +150,10 @@
                  />
                 </td>
             </tr>
-           
-            
-            
           
-                 <input type="hidden" name="idFilial" size="25"
+                 <input type="hidden" name="idFilial" 
                    value="<c:out value="${sessionScope.usuario.idFilial}" />"
              
-            
             <tr>
                 <th>Email</th>
                 <td>
@@ -167,34 +163,18 @@
                 </td>
             </tr>
             
-            <tr>
-                <th>Status</th>
-                <td>
-                 <c:if test="${cliente != null}">
-                  
-                   <c:if test='${cliente.ativo=="true"}'>
-                <input type="radio" name="ativo" value="true"checked> Ativo
-                <input type="radio" name="ativo" value="false"> Desativado
-                  </c:if>
-                
-                    <c:if test='${cliente.ativo=="false"}'>
-                <input type="radio" name="ativo" value="true"> Ativo
-                <input type="radio" name="ativo" value="false" checked> Desativado
-                  </c:if>
-              
-                  <tr>
-                <th>Data de cadastro</th>
-                <td>
-                    <c:out value='${cliente.datacadastro}'></c:out>
-                 
-                </td>
-            </tr>
-                 </c:if>
-              <c:if test="${cliente == null}">
-               <input type="radio" name="ativo" value="true" checked> Ativo
-               <input type="radio" name="ativo" value="false"> Desativado
-              </c:if></td>
-            </tr>
+            
+                  <c:if test="${cliente != null}">
+                    <tr>
+                        <th>Data Cadastro</th>
+                        <td>
+                            <c:out value='${cliente.datacadastro}' />
+
+                        </td>
+                    </tr>
+                </c:if>
+             
+            
            <tr>
              <td colspan="2" align="center">
               <input type="submit" value="Salvar" />

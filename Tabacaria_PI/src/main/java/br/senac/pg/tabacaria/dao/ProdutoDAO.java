@@ -24,13 +24,13 @@ public class ProdutoDAO {
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.PRODUTO" + "(NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO, ID_FILIAL) VALUES "
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.PRODUTO" + "(NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DATACADASTRO, ID_FILIAL) VALUES "
             + " (?, ?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO, ID_FILIAL FROM TABACARIA.PRODUTO WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DATACADASTRO, ID_FILIAL FROM TABACARIA.PRODUTO WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.PRODUTO;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.PRODUTO WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.PRODUTO SET NOME = ?,MARCA= ?, DESCRICAO = ?, PRECO_COMPRA= ?,PRECO_VENDA = ?, QUANTIDADE = ?, DT_CADASTRO = ?, ID_FILIAL = ? WHERE ID = ?;";
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.PRODUTO SET NOME = ?,MARCA= ?, DESCRICAO = ?, PRECO_COMPRA= ?,PRECO_VENDA = ?, QUANTIDADE = ?, DATACADASTRO = ? WHERE ID = ?;";
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -91,7 +91,7 @@ public class ProdutoDAO {
                 double precoCompra = rs.getDouble("PRECO_COMPRA");
                 double precoVenda = rs.getDouble("PRECO_VENDA");
                 int quantidade = rs.getInt("QUANTIDADE");
-                String dataCadastro = rs.getString("DT_CADASTRO");
+                String dataCadastro = rs.getString("DATACADASTRO");
                 int idFilial = Integer.parseInt(rs.getString("ID_FILIAL"));
 
                 produto = new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro, idFilial);
@@ -117,7 +117,7 @@ public class ProdutoDAO {
                 double precoCompra = rs.getDouble("PRECO_COMPRA");
                 double precoVenda = rs.getDouble("PRECO_VENDA");
                 int quantidade = rs.getInt("QUANTIDADE");
-                String dataCadastro = rs.getString("DT_CADASTRO");
+                String dataCadastro = rs.getString("DATACADASTRO");
                 int idFilial = Integer.parseInt(rs.getString("ID_FILIAL"));
                 lista.add(new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro, idFilial));
             }
@@ -146,8 +146,7 @@ public class ProdutoDAO {
             statement.setDouble(5, produto.getPrecoVenda());
             statement.setInt(6, produto.getQuantidade());
             statement.setString(7, produto.getDataCadastro());
-            statement.setInt(8, produto.getIdFilial());
-            statement.setLong(9, produto.getId());
+            statement.setLong(8, produto.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }

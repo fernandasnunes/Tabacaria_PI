@@ -22,13 +22,13 @@ public class ClienteDAO {
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.CLIENTE" + "  (NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, ID_FILIAL, EMAIL, DATACADASTRO, ATIVO) VALUES "
-            + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.CLIENTE" + "  (NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, ID_FILIAL, EMAIL, DATACADASTRO) VALUES "
+            + " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, ID_FILIAL, EMAIL, DATACADASTRO, ATIVO FROM TABACARIA.CLIENTE WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, SEXO, DATANASCIMENTO, CPF, ENDERECO, TELEFONE, ID_FILIAL, EMAIL, DATACADASTRO FROM TABACARIA.CLIENTE WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.CLIENTE;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.CLIENTE WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.CLIENTE SET NOME = ?,SEXO= ?, DATANASCIMENTO = ?, CPF= ?,ENDERECO = ?, TELEFONE = ?, EMAIL = ?, ATIVO = ? WHERE ID = ?;";
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.CLIENTE SET NOME = ?,SEXO= ?, DATANASCIMENTO = ?, CPF= ?,ENDERECO = ?, TELEFONE = ?, EMAIL = ? WHERE ID = ?;";
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -62,7 +62,7 @@ public class ClienteDAO {
             preparedStatement.setInt(7, cliente.getIdFilial());
             preparedStatement.setString(8, cliente.getEmail());
             preparedStatement.setString(9, cliente.getDatacadastro());
-            preparedStatement.setBoolean(10, cliente.isAtivo());
+            
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -91,10 +91,9 @@ public class ClienteDAO {
                 String endereco = rs.getString("ENDERECO");
                 String telefone = rs.getString("TELEFONE");
                 String email = rs.getString("EMAIL");
-                boolean ativo = rs.getBoolean("ATIVO");
                 String datacadastro = rs.getString("DATACADASTRO");
                 int idFilial = rs.getInt("ID_FILIAL");
-                cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, ativo, idFilial);
+                cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, idFilial);
 
             }
         } catch (SQLException e) {
@@ -126,10 +125,9 @@ public class ClienteDAO {
                 String telefone = rs.getString("TELEFONE");
                 String email = rs.getString("EMAIL");
                 String datacadastro = rs.getString("DATACADASTRO");
-                boolean ativo = rs.getBoolean("ATIVO");
                 int idFilial = rs.getInt("ID_FILIAL");
 
-                lista.add(new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, ativo, idFilial));
+                lista.add(new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, idFilial));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -149,6 +147,7 @@ public class ClienteDAO {
     public boolean editarCliente(Cliente cliente) throws SQLException {
         boolean rowUpdated;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
+            
             statement.setString(1, cliente.getNome());
             statement.setString(2, cliente.getSexo());
             statement.setString(3, cliente.getDataNascimento());
@@ -156,8 +155,7 @@ public class ClienteDAO {
             statement.setString(5, cliente.getEndereco());
             statement.setString(6, cliente.getTelefone());
             statement.setString(7, cliente.getEmail());
-            statement.setBoolean(8, cliente.isAtivo());
-            statement.setLong(9, cliente.getId());
+            statement.setLong(8, cliente.getId());
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;

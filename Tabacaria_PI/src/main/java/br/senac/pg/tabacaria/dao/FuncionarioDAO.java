@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class FuncionarioDAO {
@@ -22,13 +21,13 @@ public class FuncionarioDAO {
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FUNCIONARIO" + "  (NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL, ATIVO) VALUES "
-            + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FUNCIONARIO" + "  (NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL) VALUES "
+            + " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL, ATIVO FROM TABACARIA.FUNCIONARIO WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, CARGO, ENDERECO, SEXO, TELEFONE, DATACADASTRO, LOGIN, SENHA, ID_FILIAL FROM TABACARIA.FUNCIONARIO WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.FUNCIONARIO;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.FUNCIONARIO WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.FUNCIONARIO SET NOME = ?,CARGO = ?, ENDERECO = ?, SEXO= ?,TELEFONE = ?, DATACADASTRO = ?, LOGIN = ?, SENHA = ?, ID_FILIAL = ?, ATIVO = ? WHERE ID = ?;";
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.FUNCIONARIO SET NOME = ?,CARGO = ?, ENDERECO = ?, SEXO= ?,TELEFONE = ?, DATACADASTRO = ?, LOGIN = ?, SENHA = ?, ID_FILIAL = ? WHERE ID = ?;";
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -62,7 +61,7 @@ public class FuncionarioDAO {
             preparedStatement.setString(7, funcionario.getLogin());
             preparedStatement.setString(8, funcionario.getSenha());
             preparedStatement.setInt(9, funcionario.getIdFilial());
-            preparedStatement.setBoolean(10, funcionario.isAtivo());
+            
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -92,11 +91,10 @@ public class FuncionarioDAO {
                 String datacadastro = rs.getString("DATACADASTRO");
                 String login = rs.getString("LOGIN");
                 String senha = rs.getString("SENHA");
-                boolean ativo = rs.getBoolean("ATIVO");
                 int idFilial = rs.getInt("ID_FILIAL");
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-                funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo, idFilial);
+                funcionario = new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -120,9 +118,9 @@ public class FuncionarioDAO {
                 String datacadastro = rs.getString("DATACADASTRO");
                 String login = rs.getString("LOGIN");
                 String senha = rs.getString("SENHA");
-                boolean ativo = rs.getBoolean("ATIVO");
                 int idFilial = rs.getInt("ID_FILIAL");
-                lista.add(new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, ativo, idFilial));
+                
+                lista.add(new Funcionario(id, nome, cargo, endereco, sexo, telefone, datacadastro, login, senha, idFilial));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -152,8 +150,7 @@ public class FuncionarioDAO {
             statement.setString(7, funcionario.getLogin());
             statement.setString(8, funcionario.getSenha());
             statement.setInt(9, funcionario.getIdFilial());
-            statement.setBoolean(10, funcionario.isAtivo());
-            statement.setLong(11, funcionario.getId());
+            statement.setLong(10, funcionario.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }

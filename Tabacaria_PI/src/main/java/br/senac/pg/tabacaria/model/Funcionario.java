@@ -22,7 +22,6 @@ public class Funcionario {
     private String datacadastro;
     private String login;
     private String senha;
-    private boolean ativo;
     private int idFilial;
   
 
@@ -30,7 +29,7 @@ public class Funcionario {
 
     }
 
-    public Funcionario(Long id, String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, boolean ativo, int idFilial) {
+    public Funcionario(Long id, String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, int idFilial) {
         this.id = id;
         this.nome = nome;
         this.cargo = cargo;
@@ -40,11 +39,10 @@ public class Funcionario {
         this.datacadastro = datacadastro;
         this.login = login;
         this.senha = senha;
-        this.ativo = ativo;
         this.idFilial = idFilial;
     }
 
-    public Funcionario(String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, boolean ativo, int idFilial) {
+    public Funcionario(String nome, String cargo, String endereco, String sexo, String telefone, String datacadastro, String login, String senha, int idFilial) {
         this.nome = nome;
         this.cargo = cargo;
         this.endereco = endereco;
@@ -53,7 +51,7 @@ public class Funcionario {
         this.datacadastro = datacadastro;
         this.login = login;
         this.senha = senha;
-        this.ativo = ativo;
+        
         this.idFilial = idFilial;
     }
     
@@ -127,14 +125,6 @@ public class Funcionario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public int getIdFilial() {

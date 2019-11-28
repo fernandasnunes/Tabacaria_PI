@@ -16,13 +16,12 @@ public class Cliente {
     private String telefone;  
     private String email;
     private String datacadastro;
-    private boolean ativo;
     private int idFilial;
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo, int idFilial) {
+    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, int idFilial) {
         this.id = id;
         this.nome = nome;
         this.sexo = sexo;
@@ -32,11 +31,10 @@ public class Cliente {
         this.telefone = telefone;
         this.email = email;
         this.datacadastro = datacadastro;
-        this.ativo = ativo;
         this.idFilial = idFilial;
     }
 
-    public Cliente(String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo, int idFilial) {
+    public Cliente(String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, int idFilial) {
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
@@ -45,17 +43,7 @@ public class Cliente {
         this.telefone = telefone;
         this.email = email;
         this.datacadastro = datacadastro;
-        this.ativo = ativo;
         this.idFilial = idFilial;
-    }
-
-    public void setIdFilial(int idFilial) {
-        this.idFilial = idFilial;
-    }
-
-    
-    public int getIdFilial() {
-        return idFilial;
     }
 
     public Long getId() {
@@ -121,8 +109,6 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
 
     public String getDatacadastro() {
         return datacadastro;
@@ -132,12 +118,14 @@ public class Cliente {
         this.datacadastro = datacadastro;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public int getIdFilial() {
+        return idFilial;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
     }
+
+   
    
 }
