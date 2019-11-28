@@ -1,4 +1,4 @@
-package br.senac.pg.tabacaria.servlet.cliente;
+package br.senac.pg.tabacaria.servlet;
 
 import br.senac.pg.tabacaria.dao.ClienteDAO;
 import br.senac.pg.tabacaria.model.Cliente;

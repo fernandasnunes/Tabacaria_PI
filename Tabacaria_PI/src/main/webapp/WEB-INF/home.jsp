@@ -46,6 +46,24 @@
                                     <a class="nav-link" href="${pageContext.request.contextPath}/pgProtect/Filial">Filial<span class="sr-only"></span></a>
                                 </li>
                             </c:if>
+                                <c:if test="${!sessionScope.usuario.verificarPapel('GERENTE')}">
+                                <li class="nav-item ">
+                                    <a class="nav-link">Filial<span class="sr-only"></span></a>
+                                </li>
+                            </c:if>
+                                
+                                
+                                
+                                
+                                
+                                <c:if test="${msgErro != null}">
+            <c:out value="${msgErro}" />333333333333333333          
+        </c:if>
+                                
+            
+            
+            
+            
                             <li class="nav-item ">
                                 <a class="nav-link" href="${pageContext.request.contextPath}/logout">SAIR DO SISTEMA<span class="sr-only"></span></a>
                             </li>

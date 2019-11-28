@@ -1,4 +1,4 @@
-package br.senac.pg.tabacaria.servlet.filial;
+package br.senac.pg.tabacaria.servlet;
 
 
 import br.senac.pg.tabacaria.dao.FilialDAO;

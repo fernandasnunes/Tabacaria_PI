@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession sessao = request.getSession();
         if (sessao.getAttribute("usuario") != null) {
             // Usuario já está logado -> redireciona para /home
-            response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "/pgProtect/Home");
             return;
         }
         request.getRequestDispatcher("/login.jsp")

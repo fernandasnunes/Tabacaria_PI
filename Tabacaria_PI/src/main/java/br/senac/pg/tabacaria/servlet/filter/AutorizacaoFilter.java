@@ -55,9 +55,10 @@ public class AutorizacaoFilter implements Filter {
             // Usuario pode acessar a URL
             chain.doFilter(request, response);
         } else {
-            // Usuario não tem permissao necessaria -> Mostra msg de erro.
+     
             httpResponse.sendRedirect(httpRequest.getContextPath()
-                    + "/erro-nao-autorizado.jsp");
+                    + "/pgProtect/Home");
+            
         }
     }
 

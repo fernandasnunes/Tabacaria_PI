@@ -21,10 +21,10 @@ public class FilialDAO {
     private String jdbcPassword = "";
     
     
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FILIAL" + "  (LOCALIDADE, RESPONSAVEL, DT_CADASTRO) VALUES " +
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.FILIAL" + "  (LOCALIDADE, RESPONSAVEL, DATACADASTRO) VALUES " +
         " (?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT LOCALIDADE, RESPONSAVEL, DT_CADASTRO FROM TABACARIA.FILIAL WHERE ID =?";
+    private static final String SELECT_USER_BY_ID = "SELECT LOCALIDADE, RESPONSAVEL, DATACADASTRO FROM TABACARIA.FILIAL WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.FILIAL;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.FILIAL WHERE ID = ?;";
     private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.FILIAL SET LOCALIDADE = ?,RESPONSAVEL= ? WHERE ID = ?;";
@@ -81,7 +81,7 @@ public class FilialDAO {
                 
                 String localidade = rs.getString("LOCALIDADE");
                 String responsavel = rs.getString("RESPONSAVEL");
-                String dataCadastro = rs.getString("DT_CADASTRO");
+                String dataCadastro = rs.getString("DATACADASTRO");
                 filial = new Filial(id, localidade, responsavel, dataCadastro);
                 
             }
@@ -109,7 +109,7 @@ public class FilialDAO {
                 Long id = rs.getLong("ID");
                 String localidade = rs.getString("LOCALIDADE");
                 String responsavel = rs.getString("RESPONSAVEL");
-                String dataCadastro = rs.getString("DT_CADASTRO");
+                String dataCadastro = rs.getString("DATACADASTRO");
                 lista.add(new Filial(id, localidade, responsavel, dataCadastro));
                
             }
