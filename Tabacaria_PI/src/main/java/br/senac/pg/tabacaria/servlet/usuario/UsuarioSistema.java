@@ -1,4 +1,3 @@
-
 package br.senac.pg.tabacaria.servlet.usuario;
 
 import java.io.Serializable;
@@ -7,23 +6,25 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UsuarioSistema implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String username;
+    private String username;
 
     private String nomeCompleto;
 
     private String hashSenha;
 
     private List<Papel> papeis;
+    private int idFilial;
 
     public UsuarioSistema() {
     }
 
-    public UsuarioSistema(String username, String nomeCompleto, String senhaAberta, List<Papel> papeis) {
+    public UsuarioSistema(String username, String nomeCompleto, String senhaAberta, int idFilial, List<Papel> papeis) {
         this.username = username;
         this.nomeCompleto = nomeCompleto;
         setSenha(senhaAberta);
+        this.idFilial = idFilial;
         this.papeis = papeis;
     }
 
@@ -61,6 +62,14 @@ public class UsuarioSistema implements Serializable {
 
     public void setPapeis(List<Papel> papeis) {
         this.papeis = papeis;
+    }
+
+    public int getIdFilial() {
+        return idFilial;
+    }
+
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
     }
 
     public boolean validarSenha(String senhaAberta) {

@@ -150,6 +150,14 @@
                  />
                 </td>
             </tr>
+           
+            
+            
+          
+                 <input type="hidden" name="idFilial" size="25"
+                   value="<c:out value="${sessionScope.usuario.idFilial}" />"
+             
+            
             <tr>
                 <th>Email</th>
                 <td>

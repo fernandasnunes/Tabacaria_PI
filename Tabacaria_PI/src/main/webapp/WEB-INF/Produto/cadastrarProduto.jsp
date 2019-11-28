@@ -28,7 +28,7 @@
 
     </head>
     <body>
-<c:choose>
+        <c:choose>
             <c:when test="${sessionScope.usuario != null}">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="">Navbar</a>
@@ -67,93 +67,95 @@
         </nav>
     </c:when>
 </c:choose>
-        <div align="center">
-            <c:if test="${produto != null}">
-                <form action="Edicao" method="post">
-                </c:if>
-                <c:if test="${produto == null}">
-                    <form action="Inserir" method="post">
-                    </c:if>
-                    <table border="1" cellpadding="5">
-                        <caption>
-                            <h2>
-                                <c:if test="${produto != null}">
-                                    Editar Produto
-                                </c:if>
-                                <c:if test="${produto == null}">
-                                    Novo Produto
-                                </c:if>
-                            </h2>
-                        </caption>
+<div align="center">
+    <c:if test="${produto != null}">
+        <form action="Edicao" method="post">
+        </c:if>
+        <c:if test="${produto == null}">
+            <form action="Inserir" method="post">
+            </c:if>
+            <table border="1" cellpadding="5">
+                <caption>
+                    <h2>
                         <c:if test="${produto != null}">
-                            <input type="hidden" name="id" value="<c:out value='${produto.id}' />" />
-                        </c:if>            
-                        <tr>
-                            <th>Nome</th>
-                            <td>
-                                <input type="text" name="nome" size="45" id="nome"
-                                       value="<c:out value='${produto.nome}' />"
-                                       />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Marca</th>
-                            <td>
-                                <input type="text" name="marca" size="45"
-                                       value="<c:out value='${produto.marca}' />"
-                                       />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Descrição</th>
-                            <td>
-                                <input type="text" name="descricao" size="45"
-                                       value="<c:out value='${produto.descricao}' />"
-                                       />
-                            </td>
-                        </tr>
-                        <tr>
-                        <tr>
-                            <th>Preço Compra</th>
-                            <td>
-                                <input type="number" name="preco_compra" step="any" size="15"
-                                       value="<c:out value='${produto.precoCompra}' />"
-                                       />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Preço Venda</th>
-                            <td>
-                                <input type="number" name="preco_venda" step="any" size="15"
-                                       value="<c:out value='${produto.precoVenda}' />"
-                                       />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Quantidade</th>
-                            <td>
-                                <input type="number" name="quantidade" size="15"
-                                       value="<c:out value='${produto.quantidade}' />"
-                                       />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Data de cadastro</th>
-                            <td>
-                                <c:out value='${produto.dataCadastro}'></c:out>
+                            Editar Produto
+                        </c:if>
+                        <c:if test="${produto == null}">
+                            Novo Produto
+                        </c:if>
+                    </h2>
+                </caption>
+                <c:if test="${produto != null}">
+                    <input type="hidden" name="id" value="<c:out value='${produto.id}' />" />
+                </c:if>            
+                <tr>
+                    <th>Nome</th>
+                    <td>
+                        <input type="text" name="nome" size="45" id="nome"
+                               value="<c:out value='${produto.nome}' />"
+                               />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Marca</th>
+                    <td>
+                        <input type="text" name="marca" size="45"
+                               value="<c:out value='${produto.marca}' />"
+                               />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Descrição</th>
+                    <td>
+                        <input type="text" name="descricao" size="45"
+                               value="<c:out value='${produto.descricao}' />"
+                               />
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <th>Preço Compra</th>
+                    <td>
+                        <input type="number" name="preco_compra" step="any" size="15"
+                               value="<c:out value='${produto.precoCompra}' />"
+                               />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Preço Venda</th>
+                    <td>
+                        <input type="number" name="preco_venda" step="any" size="15"
+                               value="<c:out value='${produto.precoVenda}' />"
+                               />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Quantidade</th>
+                    <td>
+                        <input type="number" name="quantidade" size="15"
+                               value="<c:out value='${produto.quantidade}' />"
+                               />
+                    </td>
+                </tr>
 
-                                </td>
-                            </tr>
+                    <tr>
+                        <th>Data de cadastro</th>
+                        <td>
+                        <c:out value='${produto.dataCadastro}'></c:out>
 
-                            <tr>
-                                <td colspan="2" align="center">
-                                    <input type="submit" value="Salvar" />
-                                    <input type="button" value="Cancel" onclick="javascript:window.location = '${pageContext.request.contextPath}/pgProtect/Produto';" />
+                        </td>
+                    </tr>
+            <input type="hidden" name="idFilial" size="25"
+                   value="<c:out value="${sessionScope.usuario.idFilial}" />"
+                   <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Salvar" />
+                    <input type="button" value="Cancel" onclick="javascript:window.location = '${pageContext.request.contextPath}/pgProtect/Produto';" />
 
-                        </tr>
-                    </table>
-                </form>
-        </div>
+            </tr>
+        </table>
+    </form>
+</div>
 
-    </body>
+</body>
 </html>

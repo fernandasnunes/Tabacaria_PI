@@ -20,23 +20,18 @@ import java.util.List;
  */
 public class ProdutoDAO {
 
-     private String jdbcURL = "jdbc:mysql://localhost:3307/tabacaria";
+    private String jdbcURL = "jdbc:mysql://localhost:3307/tabacaria";
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
-    
-    
-    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.PRODUTO" + "(NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO) VALUES " +
-        " (?, ?, ?, ?, ?, ?, ?);";
 
-    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO FROM TABACARIA.PRODUTO WHERE ID =?";
+    private static final String INSERT_USERS_SQL = "INSERT INTO TABACARIA.PRODUTO" + "(NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO, ID_FILIAL) VALUES "
+            + " (?, ?, ?, ?, ?, ?, ?, ?);";
+
+    private static final String SELECT_USER_BY_ID = "SELECT ID,NOME, MARCA, DESCRICAO, PRECO_COMPRA, PRECO_VENDA, QUANTIDADE, DT_CADASTRO, ID_FILIAL FROM TABACARIA.PRODUTO WHERE ID =?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM TABACARIA.PRODUTO;";
     private static final String DELETE_USERS_SQL = "DELETE FROM TABACARIA.PRODUTO WHERE ID = ?;";
-    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.PRODUTO SET NOME = ?,MARCA= ?, DESCRICAO = ?, PRECO_COMPRA= ?,PRECO_VENDA = ?, QUANTIDADE = ?, DT_CADASTRO = ? WHERE ID = ?;";
-        
-     
-            
-    
-      
+    private static final String UPDATE_USERS_SQL = "UPDATE TABACARIA.PRODUTO SET NOME = ?,MARCA= ?, DESCRICAO = ?, PRECO_COMPRA= ?,PRECO_VENDA = ?, QUANTIDADE = ?, DT_CADASTRO = ?, ID_FILIAL = ? WHERE ID = ?;";
+
     protected Connection getConnection() {
         Connection connection = null;
         try {
@@ -50,12 +45,13 @@ public class ProdutoDAO {
             e.printStackTrace();
         }
         return connection;
-    
+
     }
-    
-    public ProdutoDAO(){}
-    
-     public void inserirProduto(Produto produto) throws SQLException {
+
+    public ProdutoDAO() {
+    }
+
+    public void inserirProduto(Produto produto) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
         // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
@@ -66,7 +62,8 @@ public class ProdutoDAO {
             preparedStatement.setDouble(5, produto.getPrecoVenda());
             preparedStatement.setInt(6, produto.getQuantidade());
             preparedStatement.setString(7, produto.getDataCadastro());
-            
+            preparedStatement.setInt(8, produto.getIdFilial());
+
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -78,8 +75,8 @@ public class ProdutoDAO {
         Produto produto = null;
         // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
-            // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
             preparedStatement.setLong(1, id);
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -87,7 +84,7 @@ public class ProdutoDAO {
 
             // Step 4: Process the ResultSet object.
             while (rs.next()) {
-                
+
                 String nome = rs.getString("NOME");
                 String marca = rs.getString("MARCA");
                 String descricao = rs.getString("DESCRICAO");
@@ -95,9 +92,10 @@ public class ProdutoDAO {
                 double precoVenda = rs.getDouble("PRECO_VENDA");
                 int quantidade = rs.getInt("QUANTIDADE");
                 String dataCadastro = rs.getString("DT_CADASTRO");
-                
-                produto = new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro);
-                
+                int idFilial = Integer.parseInt(rs.getString("ID_FILIAL"));
+
+                produto = new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro, idFilial);
+
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -105,10 +103,10 @@ public class ProdutoDAO {
         return produto;
     }
 
-    public List <Produto> selecionarTodosProduto() {
-        List <Produto> lista = new ArrayList <>();
+    public List<Produto> selecionarTodosProduto() {
+        List<Produto> lista = new ArrayList<>();
         try (Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -120,8 +118,8 @@ public class ProdutoDAO {
                 double precoVenda = rs.getDouble("PRECO_VENDA");
                 int quantidade = rs.getInt("QUANTIDADE");
                 String dataCadastro = rs.getString("DT_CADASTRO");
-                lista.add(new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro));
-               
+                int idFilial = Integer.parseInt(rs.getString("ID_FILIAL"));
+                lista.add(new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro, idFilial));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -147,9 +145,9 @@ public class ProdutoDAO {
             statement.setDouble(4, produto.getPrecoCompra());
             statement.setDouble(5, produto.getPrecoVenda());
             statement.setInt(6, produto.getQuantidade());
-            statement.setString(7, produto.getDataCadastro());            
-            statement.setLong(8, produto.getId());
-            
+            statement.setString(7, produto.getDataCadastro());
+            statement.setInt(8, produto.getIdFilial());
+            statement.setLong(9, produto.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
@@ -157,7 +155,7 @@ public class ProdutoDAO {
     }
 
     private void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
+        for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
                 System.err.println("SQLState: " + ((SQLException) e).getSQLState());

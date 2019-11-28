@@ -17,11 +17,13 @@ public class Cliente {
     private String email;
     private String datacadastro;
     private boolean ativo;
+    private int idFilial;
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo) {
+    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo, int idFilial) {
+        this.id = id;
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
@@ -31,23 +33,10 @@ public class Cliente {
         this.email = email;
         this.datacadastro = datacadastro;
         this.ativo = ativo;
-    }   
-
-    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, boolean ativo) {
-        this.id = id;
-        this.nome = nome;
-        this.sexo = sexo;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
-        this.ativo = ativo;
+        this.idFilial = idFilial;
     }
-    
-    
-    public Cliente(Long id, String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo) {
-        this.id = id;
+
+    public Cliente(String nome, String sexo, String dataNascimento, String cpf, String endereco, String telefone, String email, String datacadastro, boolean ativo, int idFilial) {
         this.nome = nome;
         this.sexo = sexo;
         this.dataNascimento = dataNascimento;
@@ -57,6 +46,16 @@ public class Cliente {
         this.email = email;
         this.datacadastro = datacadastro;
         this.ativo = ativo;
+        this.idFilial = idFilial;
+    }
+
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
+    }
+
+    
+    public int getIdFilial() {
+        return idFilial;
     }
 
     public Long getId() {

@@ -33,9 +33,9 @@ public class UsuarioSistemaServiceMockImpl implements UsuarioSistemaService {
 
     private void init() {
         mapUsuarios = new LinkedHashMap<>();
-        mapUsuarios.put("raffael", new UsuarioSistema("raffael", "Raffael Moraes", "123",
+        mapUsuarios.put("raffael", new UsuarioSistema("raffael", "Raffael Moraes", "123",1,
                 Arrays.asList(papelService.findByNome("GERENTE"))));
-         mapUsuarios.put("rafael", new UsuarioSistema("rafael", "Rafael Dini", "123",
+         mapUsuarios.put("rafael", new UsuarioSistema("rafael", "Rafael Dini", "123",2,
                 Arrays.asList(papelService.findByNome("FUNCIONARIO"))));
     }
 

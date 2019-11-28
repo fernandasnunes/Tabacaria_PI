@@ -15,13 +15,14 @@ public class Produto {
     private Double precoVenda;
     private int quantidade;       
     private String dataCadastro; 
+    private int idFilial;
     
    
 
     public Produto() {
     }
 
-    public Produto(Long id, String nome, String marca, String descricao, Double precoCompra, Double precoVenda, int quantidade, String dataCadastro) {
+    public Produto(Long id, String nome, String marca, String descricao, Double precoCompra, Double precoVenda, int quantidade, String dataCadastro, int idFilial) {
         this.id = id;
         this.nome = nome;
         this.marca = marca;
@@ -30,11 +31,10 @@ public class Produto {
         this.precoVenda = precoVenda;
         this.quantidade = quantidade;
         this.dataCadastro = dataCadastro;
+        this.idFilial = idFilial;
     }
 
-    
-
-    public Produto(String nome, String marca, String descricao, Double precoCompra, Double precoVenda, int quantidade, String dataCadastro) {
+    public Produto(String nome, String marca, String descricao, Double precoCompra, Double precoVenda, int quantidade, String dataCadastro, int idFilial) {
         this.nome = nome;
         this.marca = marca;
         this.descricao = descricao;
@@ -42,6 +42,7 @@ public class Produto {
         this.precoVenda = precoVenda;
         this.quantidade = quantidade;
         this.dataCadastro = dataCadastro;
+        this.idFilial = idFilial;
     }
 
     
@@ -108,6 +109,14 @@ public class Produto {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public int getIdFilial() {
+        return idFilial;
+    }
+
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
     }
     
     

@@ -1,6 +1,4 @@
-
 package br.senac.pg.tabacaria.servlet;
-
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -15,15 +13,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-
 /**
  *
  * @author rafael
  */
 @WebServlet("/pgProtect/Produto/*")
 public class ProdutoServlet extends HttpServlet {
-    
-     private ProdutoDAO produtoDAO;
+
+    private ProdutoDAO produtoDAO;
 
     public void init() {
         produtoDAO = new ProdutoDAO();
@@ -37,14 +34,14 @@ public class ProdutoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getPathInfo();
-          
+
         if (action == null) {
             action = "/Listar";
         }
 
         try {
             switch (action) {
-               
+
                 case "/Novo":
                     novoFormulario(request, response);
                     break;
@@ -76,13 +73,12 @@ public class ProdutoServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Produto/pesquisaProduto.jsp");
         dispatcher.forward(request, response);
     }
-    
-    
+
     private void novoFormulario(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Produto/cadastrarProduto.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
     private void formularioEdicao(HttpServletRequest request, HttpServletResponse response)
@@ -105,10 +101,10 @@ public class ProdutoServlet extends HttpServlet {
         double precoVenda = Double.parseDouble(request.getParameter("preco_venda"));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String dataCadastro = LocalDate.now().toString();
-        
-        
-        Produto novoProduto = new Produto(nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro);
-        
+        int idFilial = Integer.parseInt(request.getParameter("idFilial"));
+
+        Produto novoProduto = new Produto(nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro, idFilial);
+
         produtoDAO.inserirProduto(novoProduto);
         response.sendRedirect("Listar");
     }
@@ -123,8 +119,9 @@ public class ProdutoServlet extends HttpServlet {
         double precoVenda = Double.parseDouble(request.getParameter("preco_venda"));
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String dataCadastro = LocalDate.now().toString();
+        int idFilial = Integer.parseInt(request.getParameter("idFilial"));
 
-        Produto produto = new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro);
+        Produto produto = new Produto(id, nome, marca, descricao, precoCompra, precoVenda, quantidade, dataCadastro, idFilial);
         produtoDAO.editarProduto(produto);
         response.sendRedirect("Listar");
     }

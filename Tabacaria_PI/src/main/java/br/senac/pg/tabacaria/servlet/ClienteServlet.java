@@ -96,7 +96,8 @@ public class ClienteServlet extends HttpServlet {
         String email = request.getParameter("email");
         String date = LocalDate.now().toString();
         boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
-        Cliente novoCliente = new Cliente(nome, sexo, datanascimento, cpf, endereco, telefone, email, date, ativo);
+        int idFilial = Integer.parseInt(request.getParameter("idFilial"));
+        Cliente novoCliente = new Cliente(nome, sexo, datanascimento, cpf, endereco, telefone, email, date, ativo, idFilial);
         clienteDAO.inserirCliente(novoCliente);
         response.sendRedirect("Listar");
     }
@@ -113,7 +114,8 @@ public class ClienteServlet extends HttpServlet {
         String email = request.getParameter("email");
         String datacadastro = request.getParameter("datacadastro");
         boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
-        Cliente cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, ativo);
+        int idFilial = Integer.parseInt(request.getParameter("idFilial"));
+        Cliente cliente = new Cliente(id, nome, sexo, datanascimento, cpf, endereco, telefone, email, datacadastro, ativo, idFilial);
         clienteDAO.editarCliente(cliente);
         response.sendRedirect("Listar");
     }
