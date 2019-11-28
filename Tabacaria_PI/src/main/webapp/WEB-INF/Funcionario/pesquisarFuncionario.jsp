@@ -85,7 +85,18 @@
                 <tr>
                     <td><c:out value="${funcionario.id}" /></td>
                     <td><c:out value="${funcionario.nome}" /></td>
-                    <td><c:out value="${funcionario.idCargo}" /></td>
+                    <c:if test="${funcionario.idCargo == 1}">
+                    <td><c:out value="Vendedor" /></td>
+                    </c:if>
+                    <c:if test="${funcionario.idCargo == 2}">
+                    <td><c:out value="Gerente" /></td>
+                    </c:if>
+                    <c:if test="${funcionario.idCargo == 3}">
+                    <td><c:out value="RH" /></td>
+                    </c:if>
+                    <c:if test="${funcionario.idCargo == 4}">
+                    <td><c:out value="TI" /></td>
+                    </c:if>
                     <td>
                      <a href="${pageContext.request.contextPath}/pgProtect/Funcionario/Editar?id=<c:out value='${funcionario.id}' />">Editar</a>
                      
