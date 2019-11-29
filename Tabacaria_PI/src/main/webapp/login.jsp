@@ -31,7 +31,7 @@
         </c:if>
     <form  method="post" id="loginform" name="loginform" action="${pageContext.request.contextPath}/login">
       <input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
-      <input type="text" id="password" class="fadeIn third" name="senha" placeholder="senha">
+      <input type="password" id="password"  name="senha" >
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
 
